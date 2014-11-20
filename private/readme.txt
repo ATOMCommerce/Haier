@@ -1,0 +1,1 @@
+all self-owned stuffs.
