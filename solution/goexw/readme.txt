@@ -1,1 +1,0 @@
-Repository for exiao.com, Gang/Fred is the owner.
