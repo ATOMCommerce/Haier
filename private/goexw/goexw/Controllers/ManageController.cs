@@ -6,9 +6,9 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using goexw.Models;
+using Goexw.Models;
 
-namespace goexw.Controllers
+namespace Goexw.Controllers
 {
     [Authorize]
     public class ManageController : Controller

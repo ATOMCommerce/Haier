@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "goexw", "goexw\goexw.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "goexw.Tests", "goexw.Tests\goexw.Tests.csproj", "{5A53CDAD-066C-4655-80EA-58FD1E525B13}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Resources", "Resources\Resources.csproj", "{43173206-7466-4A1C-B544-6A090F7D737E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{5A53CDAD-066C-4655-80EA-58FD1E525B13}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5A53CDAD-066C-4655-80EA-58FD1E525B13}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5A53CDAD-066C-4655-80EA-58FD1E525B13}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43173206-7466-4A1C-B544-6A090F7D737E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43173206-7466-4A1C-B544-6A090F7D737E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43173206-7466-4A1C-B544-6A090F7D737E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43173206-7466-4A1C-B544-6A090F7D737E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
