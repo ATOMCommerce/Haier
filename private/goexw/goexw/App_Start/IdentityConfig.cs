@@ -10,9 +10,9 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
-using Goexw.Models;
+using goexw.Models;
 
-namespace Goexw
+namespace goexw
 {
     public class EmailService : IIdentityMessageService
     {

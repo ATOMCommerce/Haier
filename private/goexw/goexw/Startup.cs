@@ -1,8 +1,8 @@
 ﻿using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartupAttribute(typeof(Goexw.Startup))]
-namespace Goexw
+[assembly: OwinStartupAttribute(typeof(goexw.Startup))]
+namespace goexw
 {
     public partial class Startup
     {

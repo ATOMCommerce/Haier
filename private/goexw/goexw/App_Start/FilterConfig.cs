@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 
-namespace Goexw
+namespace goexw
 {
     public class FilterConfig
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Goexw.Controllers
+namespace goexw.Controllers
 {
     public class CartController : Controller
     {

@@ -8,9 +8,9 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using Goexw.Models;
+using goexw.Models;
 
-namespace Goexw.Controllers
+namespace goexw.Controllers
 {
     [Authorize]
     public class AccountController : Controller

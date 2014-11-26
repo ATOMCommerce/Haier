@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Goexw;
-using Goexw.Controllers;
+using goexw;
+using goexw.Controllers;
 
-namespace Goexw.Tests.Controllers
+namespace goexw.Tests.Controllers
 {
     [TestClass]
     public class HomeControllerTest

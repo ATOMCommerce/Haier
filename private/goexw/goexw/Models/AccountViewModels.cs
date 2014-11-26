@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace Goexw.Models
+namespace goexw.Models
 {
     public class ExternalLoginConfirmationViewModel
     {

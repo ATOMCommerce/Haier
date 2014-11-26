@@ -9,7 +9,7 @@
     <ProjectGuid>{5A53CDAD-066C-4655-80EA-58FD1E525B13}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Goexw.Tests</RootNamespace>
+    <RootNamespace>goexw.Tests</RootNamespace>
     <AssemblyName>goexw.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
