@@ -13,26 +13,26 @@ namespace Goexw.Models
             mockData.Add(new MockProductCategory
             {
                 Id = 1,
-                Name = "Apparel, Textiles & Accessories",
-                SubCategories = new List<MockProductCategory> 
+                Text = "Apparel, Textiles & Accessories",
+                Children = new List<MockProductCategory> 
                 {
                     new MockProductCategory {
-                        Id = 101, Name = "Apparel", SubCategories = new List<MockProductCategory> 
+                        Id = 101, Text = "Apparel", Children = new List<MockProductCategory> 
                         {
-                            new MockProductCategory {Id = 10101, Name = "Apparel sub 1"},
-                            new MockProductCategory {Id = 10102, Name = "Apparel sub 2"},
-                            new MockProductCategory {Id = 10103, Name = "Apparel sub 3"},
-                            new MockProductCategory {Id = 10104, Name = "Apparel sub 4"},
-                            new MockProductCategory {Id = 10105, Name = "Apparel sub 5"}
+                            new MockProductCategory {Id = 10101, Text = "Apparel sub 1"},
+                            new MockProductCategory {Id = 10102, Text = "Apparel sub 2"},
+                            new MockProductCategory {Id = 10103, Text = "Apparel sub 3"},
+                            new MockProductCategory {Id = 10104, Text = "Apparel sub 4"},
+                            new MockProductCategory {Id = 10105, Text = "Apparel sub 5"}
                         }
                     }, 
                     new MockProductCategory {
-                        Id = 102, Name = "Textiles", SubCategories = new List<MockProductCategory>
+                        Id = 102, Text = "Textiles", Children = new List<MockProductCategory>
                         {
-                            new MockProductCategory {Id = 102001, Name = "Textiles sub 1"}
+                            new MockProductCategory {Id = 102001, Text = "Textiles sub 1"}
                         }
                     },
-                    new MockProductCategory {Id = 103, Name = "Accessories"}
+                    new MockProductCategory {Id = 103, Text = "Accessories"}
                 },
 
             });
@@ -40,51 +40,51 @@ namespace Goexw.Models
             mockData.Add(new MockProductCategory
             {
                 Id = 2,
-                Name = "Auto & Transportation",
-                SubCategories = new List<MockProductCategory> 
+                Text = "Auto & Transportation",
+                Children = new List<MockProductCategory> 
                 {
                     new MockProductCategory {
-                        Id = 201, Name = "Auto", SubCategories = new List<MockProductCategory> 
+                        Id = 201, Text = "Auto", Children = new List<MockProductCategory> 
                         {
-                            new MockProductCategory {Id = 20101, Name = "Auto sub 1"},
-                            new MockProductCategory {Id = 20102, Name = "Auto sub 2"},
-                            new MockProductCategory {Id = 20103, Name = "Auto sub 3"},
-                            new MockProductCategory {Id = 20104, Name = "Auto sub 4"},
-                            new MockProductCategory {Id = 20105, Name = "Auto sub 5"}
+                            new MockProductCategory {Id = 20101, Text = "Auto sub 1"},
+                            new MockProductCategory {Id = 20102, Text = "Auto sub 2"},
+                            new MockProductCategory {Id = 20103, Text = "Auto sub 3"},
+                            new MockProductCategory {Id = 20104, Text = "Auto sub 4"},
+                            new MockProductCategory {Id = 20105, Text = "Auto sub 5"}
                         }
                     }, 
                     new MockProductCategory {
-                        Id = 202, Name = "Transportation", SubCategories = new List<MockProductCategory>
+                        Id = 202, Text = "Transportation", Children = new List<MockProductCategory>
                         {
-                            new MockProductCategory {Id = 201, Name = "Transportation sub 1"}
+                            new MockProductCategory {Id = 201, Text = "Transportation sub 1"}
                         }
                     }
                 },
 
             });
 
-            mockData.Add(new MockProductCategory { Id = 3, Name = "Machinery, Hardware &amp; Tools" });
-            mockData.Add(new MockProductCategory { Id = 4, Name = "Gifts, Sports &amp; Toys" });
-            mockData.Add(new MockProductCategory { Id = 5, Name = "Home, Lights &amp; Construction" });
-            mockData.Add(new MockProductCategory { Id = 6, Name = "Health &amp; Beauty" });
-            mockData.Add(new MockProductCategory { Id = 7, Name = "Jewelry, Bags &amp; Shoes" });
-            mockData.Add(new MockProductCategory { Id = 8, Name = "Electrical Equipment, Components &amp; Telecom" });
-            mockData.Add(new MockProductCategory { Id = 9, Name = "Agriculture &amp; Food" });
-            mockData.Add(new MockProductCategory { Id = 10, Name = "Packaging, Advertising &amp; Office" });
-            mockData.Add(new MockProductCategory { Id = 11, Name = "Metallurgy, Chemicals, Rubber &amp; Plastics" });
+            mockData.Add(new MockProductCategory { Id = 3, Text = "Machinery, Hardware &amp; Tools" });
+            mockData.Add(new MockProductCategory { Id = 4, Text = "Gifts, Sports &amp; Toys" });
+            mockData.Add(new MockProductCategory { Id = 5, Text = "Home, Lights &amp; Construction" });
+            mockData.Add(new MockProductCategory { Id = 6, Text = "Health &amp; Beauty" });
+            mockData.Add(new MockProductCategory { Id = 7, Text = "Jewelry, Bags &amp; Shoes" });
+            mockData.Add(new MockProductCategory { Id = 8, Text = "Electrical Equipment, Components &amp; Telecom" });
+            mockData.Add(new MockProductCategory { Id = 9, Text = "Agriculture &amp; Food" });
+            mockData.Add(new MockProductCategory { Id = 10, Text = "Packaging, Advertising &amp; Office" });
+            mockData.Add(new MockProductCategory { Id = 11, Text = "Metallurgy, Chemicals, Rubber &amp; Plastics" });
             mockData.Add(new MockProductCategory
             {
                 Id = 12,
-                Name = "Other",
-                SubCategories = new List<MockProductCategory> 
+                Text = "Other",
+                Children = new List<MockProductCategory> 
             { 
                 new MockProductCategory {
-                        Id = 1201, Name = "Other Stuffs", SubCategories = new List<MockProductCategory>
+                        Id = 1201, Text = "Other Stuffs", Children = new List<MockProductCategory>
                         {
-                            new MockProductCategory {Id = 120101, Name = "Transportation sub 1"},
-                            new MockProductCategory {Id = 120102, Name = "Transportation sub 1", SubCategories = new List<MockProductCategory> 
+                            new MockProductCategory {Id = 120101, Text = "Transportation sub 1"},
+                            new MockProductCategory {Id = 120102, Text = "Transportation sub 1", Children = new List<MockProductCategory> 
                             {
-                                new MockProductCategory {Id = 12010201, Name = "A deep one"}
+                                new MockProductCategory {Id = 12010201, Text = "A deep one"}
                             }}
                         }
                     }

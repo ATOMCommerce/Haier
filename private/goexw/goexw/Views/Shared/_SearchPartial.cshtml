@@ -1,9 +1,10 @@
-﻿<table width="100%" style="border:0px;margin:0px 0px 10px 0px" cellpadding="0px;" cellspacing="0px">
+﻿@using Goexw.Resources
+<table width="100%" style="border:0px;margin:0px 0px 10px 0px" cellpadding="0px;" cellspacing="0px">
     <tr><td style="height:100px;"></td></tr>
     <tr>
         <td></td>
         <td colspan="2">
-            <span id="toggleWindow" class="k-button">All Categories &gt;</span><span id="result"></span>
+            @Common.Search_In &nbsp;&nbsp;<button id="categoryButton">@Common.All_Categories &gt;</button><span id="result"></span>
             <div id="categoryWindow" style="display:none;">
                 <div id="categoryTree"></div>
             </div>
