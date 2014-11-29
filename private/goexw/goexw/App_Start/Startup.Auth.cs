@@ -5,9 +5,9 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
-using goexw.Models;
+using Goexw.Models;
 
-namespace goexw
+namespace Goexw
 {
     public partial class Startup
     {
