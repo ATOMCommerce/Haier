@@ -1,4 +1,5 @@
-﻿using System;
+﻿using goexw.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -21,7 +22,8 @@ namespace goexw.Controllers
 
         public ActionResult AllCatogries()
         {
-            return View();
+            var mockData = MockDataProvider.GetProductCategories();
+            return Json(mockData);
         }
 
         public ActionResult Promotions()
@@ -30,3 +32,4 @@ namespace goexw.Controllers
         }
     }
 }
+

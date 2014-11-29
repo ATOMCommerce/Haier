@@ -61,6 +61,15 @@ namespace Goexw.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to All Categories.
+        /// </summary>
+        public static string All_Categories {
+            get {
+                return ResourceManager.GetString("All_Categories", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to GOEXW.
         /// </summary>
         public static string Goexw {
@@ -147,6 +156,15 @@ namespace Goexw.Resources {
         public static string MyOrders_InProgress {
             get {
                 return ResourceManager.GetString("MyOrders_InProgress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search In.
+        /// </summary>
+        public static string Search_In {
+            get {
+                return ResourceManager.GetString("Search_In", resourceCulture);
             }
         }
     }
