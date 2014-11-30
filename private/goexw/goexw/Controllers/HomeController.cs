@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Goexw.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,7 +11,8 @@ namespace Goexw.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            var promos = MockDataProvider.GetPromotions();
+            return View(promos);
         }
 
         public ActionResult About()

@@ -23,7 +23,7 @@ namespace Goexw.Controllers
         public ActionResult AllCatogries()
         {
             var mockData = MockDataProvider.GetProductCategories();
-            return Json(mockData);
+            return Json(mockData, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult Promotions()

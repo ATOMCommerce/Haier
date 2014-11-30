@@ -11,7 +11,7 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>goexw</RootNamespace>
+    <RootNamespace>Goexw</RootNamespace>
     <AssemblyName>goexw</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
@@ -174,6 +174,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MockDataProvider.cs" />
     <Compile Include="Models\MockProductCategory.cs" />
+    <Compile Include="Models\MockPromotion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -209,6 +210,11 @@
     <Content Include="Content\jstreethemes\default\style.css" />
     <Content Include="Content\jstreethemes\default\style.min.css" />
     <Content Include="Content\jstreethemes\default\throbber.gif" />
+    <Content Include="Content\mockimgs\mp1.jpg" />
+    <Content Include="Content\mockimgs\mp2.jpg" />
+    <Content Include="Content\mockimgs\mp3.jpg" />
+    <Content Include="Content\mockimgs\mp4.jpg" />
+    <Content Include="Content\mockimgs\mp5.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -219,9 +225,9 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.11.1.js" />
     <Content Include="Scripts\jquery-ui.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />

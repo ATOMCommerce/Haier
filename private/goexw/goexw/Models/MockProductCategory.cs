@@ -7,9 +7,9 @@ namespace Goexw.Models
 {
     public class MockProductCategory
     {
-        public int Id { get; set; }
-        public String Text { get; set; }
+        public int id { get; set; }
+        public String text { get; set; }
 
-        public List<MockProductCategory> Children { get; set; }
+        public List<MockProductCategory> children { get; set; }
     }
 }

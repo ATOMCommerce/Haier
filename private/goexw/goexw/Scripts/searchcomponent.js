@@ -1,24 +1,29 @@
 ﻿$(function () {
-    $("#categoryButton").click(buildTree);
+    $("#categoryButton").click(showCatTree);
+    
     $("#categoryWindow").dialog({
         modal: true,
         autoOpen: false,
         width: 800,
         height: 600
     });
-});
 
-function buildTree() {
-    /*
-    $('#categoryTree').jstree({
+    var cattree = $('#categoryTree').jstree({
+        "plugins": ["checkbox"],
         'core': {
             'data': {
-                "url": "/Search/AllCatogries",
-                "dataType": "json" 
+                "url": "/Search/AllCatogries"
+            },
+            "themes": {
+                "icon": false
             }
         }
-    });
-    */
+    }).jstree("open_all").jstree("hide_icons");
+    
+});
+
+function showCatTree() {
+    
     $("#categoryWindow").dialog("open");
 
 }
