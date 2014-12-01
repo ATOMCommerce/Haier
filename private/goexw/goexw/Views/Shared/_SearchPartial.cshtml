@@ -1,11 +1,24 @@
 ﻿@using Goexw.Resources
-
-<div class="row">
-    <button class="btn col-md-2 col-lg-2" id="categoryButton">@Common.All_Categories &gt;</button>
+<div class="table">
+  <div class="row">
+      <button class="btn col-lg-2 col-md-10" id="categoryButton">@Common.All_Categories &gt;</button>
+      <span class="goexw_cat_label goexw_cat_label-tags">
+          Category 1
+          <a onclick="javascript:alert(0);" href="javascript:void(0);">
+              <i class="goexw_cat_fa goexw_cat_fa-trash-o"></i>
+          </a>
+      </span>
+      <span class="goexw_cat_label goexw_cat_label-tags">
+          Category 2
+          <a onclick="javascript:alert(0);" href="javascript:void(0);">
+              <i class="goexw_cat_fa goexw_cat_fa-trash-o"></i>
+          </a>
+      </span>
     <div id="categoryWindow" style="display:none;">
         <div id="categoryTree"></div>
     </div>
-
+  </div>
+  <div class="row top_blank_5">
     <form class="form-inline col-md-10" role="form">
         <div class="form-group">
             <div class="input-group">
@@ -36,5 +49,6 @@
             </div>
         </div>
     </form>
+  </div>
 </div>
 

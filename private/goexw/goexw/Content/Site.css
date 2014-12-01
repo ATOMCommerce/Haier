@@ -23,3 +23,39 @@ textarea {
     max-width: 280px;
 }
 
+.top_blank_5{
+    padding-top: 5px;
+}
+
+.goexw_cat_label-tags {
+    background-color: #eee;
+    color:#000;
+    font-size: 100%;
+    font-weight: normal;
+    margin: 2px;
+}
+.goexw_cat_label {
+    border-radius: 0.25em;
+    color: #000000;
+    display: inline;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 1;
+    padding: 0.2em 0.6em 0.3em;
+    text-align: center;
+    vertical-align: central;
+    white-space: nowrap;
+    
+}
+.goexw_cat_fa {
+    display: inline-block;
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.goexw_cat_fa-trash-o:before {
+    content: "x";
+}
