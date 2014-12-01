@@ -1,26 +1,40 @@
 ﻿@using Goexw.Resources
-<table width="100%" style="border:0px;margin:10px 0px 10px 0px" cellpadding="0px;" cellspacing="0px">
-    <tr>
-        <td></td>
-        <td colspan="2">
-            @Common.Search_In &nbsp;&nbsp;<button id="categoryButton">@Common.All_Categories &gt;</button><span id="result"></span>
-            <div id="categoryWindow" style="display:none;">
-                <div id="categoryTree"></div>
+
+<div class="row">
+    <button class="btn col-md-2 col-lg-2" id="categoryButton">@Common.All_Categories &gt;</button>
+    <div id="categoryWindow" style="display:none;">
+        <div id="categoryTree"></div>
+    </div>
+
+    <form class="form-inline col-md-10" role="form">
+        <div class="form-group">
+            <div class="input-group">
+                <div class="input-group-addon">Keyword: </div>
+                <input type="text" class="form-control" placeholder="products keyword"/>
             </div>
-        </td>
-    </tr>
-    <tr>
-        <td>&nbsp;&nbsp;</td>
-        <td>
-            <input id="searchKeywords" /> Least Pcs:<input id="leastPcs" /> Shipping Method: <select id="shipMethod" style="width:120px;">
-                <option>Air</option>
-                <option>Ocean</option>
-                <option>Train</option>
-            </select>
-        </td>
-        <td style="width:50px;">
-            <a id="doSearch" href="list.html"><img style="width:50px;height:50px; cursor:pointer;" alt="Search" src="/Resources/images/search.jpg" /></a>
-        </td>
-    </tr>
-</table>
+        </div>
+        <div class="form-group">
+            <div class="input-group">
+                <div class="input-group-addon">Price: </div>
+                <input type="text" class="form-control"/>
+                <div class="input-group-addon">$</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="input-group">
+                <div class="input-group-addon">Shipping: </div>
+                <select id="shipMethod" class="form-control">
+                    <option>Air</option>
+                    <option>Ship</option>
+                    <option>Train</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="input-group">
+                <a class="btn btn-primary" href="@Url.Action("Index","Search")"><i class="glyphicon glyphicon-search"></i></a>
+            </div>
+        </div>
+    </form>
+</div>
 

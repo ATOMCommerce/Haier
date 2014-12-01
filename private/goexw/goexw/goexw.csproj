@@ -279,13 +279,13 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_SearchPartial.cshtml" />
+    <Content Include="Views\Search\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Cart\" />
     <Folder Include="Views\Order\" />
     <Folder Include="Views\Product\" />
-    <Folder Include="Views\Search\" />
     <Folder Include="Views\Settings\" />
   </ItemGroup>
   <ItemGroup>

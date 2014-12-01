@@ -9,6 +9,12 @@ namespace Goexw.Controllers
 {
     public class SearchController : Controller
     {
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+
         //returns a collection of product models
         public ActionResult DoSearch()
         {
