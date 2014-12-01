@@ -2,16 +2,36 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 
 namespace Goexw.Controllers
 {
     public class SearchController : Controller
     {
-        public ActionResult Index()
+
+        //Mock Search Model
+        public class SearchResult 
         {
-            return View();
+            public String Title { get; set; }
+            public String Description { get; set; }
+        }
+        public ActionResult Index(String keyword)
+        {
+            
+
+            var webClient = new WebClient();
+            Object res = null;
+            using (webClient)
+            {
+                var json = webClient.DownloadString("http://bingsearchproxy.azurewebsites.net/api/Search?query=" + keyword);
+                JavaScriptSerializer serializer = new JavaScriptSerializer();
+                res = serializer.Deserialize(json, typeof(List<SearchResult>));
+            }
+
+            return View(res);
         }
 
 
