@@ -14,12 +14,12 @@ namespace Goexw.Helper
     {
         public static SalesOrderResponseModel ProcessSalesOrderRequest(SalesOrderRequestModel request)
         {
-            var postdata = XmlUtility.Serialize<SalesOrderRequestModel>(requestModel);
+            var postdata = XmlUtility.Serialize<SalesOrderRequestModel>(request);
             var url = AtomComConfig.AtomComRoot + "salesorder";
-            var response = HttpReqeustHelper.PostData(url, postdata);
+            var response = PostXmlData(url, postdata);
             if (!string.IsNullOrEmpty(response))
             {
-                return XMLHelper.Deserialize<SalesOrderResponseModel>(response);
+                return XmlUtility.Deserialize<SalesOrderResponseModel>(response);
             }
 
             return null;
@@ -27,23 +27,23 @@ namespace Goexw.Helper
 
         public static InventoryResponseModel ProcessInventoryRequest(InventoryRequestModel request)
         {
-            var postdata = XmlUtility.Serialize<InventoryRequestModel>(requestModel);
+            var postdata = XmlUtility.Serialize<InventoryRequestModel>(request);
             var url = AtomComConfig.AtomComRoot + "inventory";
-            var response = HttpReqeustHelper.PostData(url, postdata);
+            var response = PostXmlData(url, postdata);
             if (!string.IsNullOrEmpty(response))
             {
-                return XMLHelper.Deserialize<InventoryResponseModel>(response);
+                return XmlUtility.Deserialize<InventoryResponseModel>(response);
             }
 
             return null;
         }
 
-        private static string PostXmlData(string url, string data)
+        private static string PostXmlData(string uri, string data)
         {
             HttpResponseMessage response = null;
             using (var client = new HttpClient())
             {
-                var content = new StringContent(postdata, System.Text.Encoding.UTF8, "text/xml");
+                var content = new StringContent(data, System.Text.Encoding.UTF8, "text/xml");
                 response = client.PostAsync(uri, content).Result;
             }
             if (response.IsSuccessStatusCode)

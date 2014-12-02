@@ -8,6 +8,7 @@ using Goexw.Helper;
 using MsStore.Mfl.Core.Models.Request;
 using MsStore.Mfl.Core.Models;
 using MsStore.Mfl.Core.Enumeration;
+using MsStore.Mfl.Core.Utilities;
 
 namespace goexw.Tests.Proxy
 {
@@ -27,10 +28,10 @@ namespace goexw.Tests.Proxy
             inventory.Item.SupplierId = "product1";
             inventory.Item.VariantId = "product1";
             inventory.Item.ISPId = "product1";
-            inventory.Item.ProductType = inventoryInfo.ProductInfo.ProductType;
+            inventory.Item.ProductType =  "Physical";
             requestModel.Inventories.Add(inventory);
 
-            string xml = XMLHelper.Serialize<InventoryRequestModel>(requestModel);
+            string xml = XmlUtility.Serialize<InventoryRequestModel>(requestModel);
             Assert.IsNotNull(xml);
             var response = AtomCommerceProxy.ProcessInventoryRequest(requestModel);
         }
