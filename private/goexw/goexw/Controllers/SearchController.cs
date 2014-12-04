@@ -56,6 +56,12 @@ namespace Goexw.Controllers
         {
             return View();
         }
+
+        public ActionResult SearchPartial()
+        {
+            var mockData = MockDataProvider.GetProductCategories();
+            return PartialView(mockData);
+        }
     }
 }
 

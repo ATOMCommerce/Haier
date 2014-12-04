@@ -35,7 +35,7 @@
             </div>
     </div>
     <div id="SearchPartial" class="container">
-        @Html.Partial("_SearchPartial")
+        @{Html.RenderAction("SearchPartial", "Search");}
     </div>
     <div class="container body-content">
         @RenderBody()
