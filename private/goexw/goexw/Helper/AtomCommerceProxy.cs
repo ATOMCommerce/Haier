@@ -15,7 +15,7 @@ namespace Goexw.Helper
         public static SalesOrderResponseModel ProcessSalesOrderRequest(SalesOrderRequestModel request)
         {
             var postdata = XmlUtility.Serialize<SalesOrderRequestModel>(request);
-            var url = AtomComConfig.AtomComRoot + "salesorder";
+            var url = SystemConfig.AtomComRoot + "salesorder";
             var response = PostXmlData(url, postdata);
             if (!string.IsNullOrEmpty(response))
             {
@@ -28,7 +28,7 @@ namespace Goexw.Helper
         public static InventoryResponseModel ProcessInventoryRequest(InventoryRequestModel request)
         {
             var postdata = XmlUtility.Serialize<InventoryRequestModel>(request);
-            var url = AtomComConfig.AtomComRoot + "inventory";
+            var url = SystemConfig.AtomComRoot + "inventory";
             var response = PostXmlData(url, postdata);
             if (!string.IsNullOrEmpty(response))
             {

@@ -6,7 +6,7 @@ using System.Web;
 
 namespace Goexw.Config
 {
-    public class AtomComConfig
+    public class SystemConfig
     {
         public static string AtomComRoot
         {
@@ -23,6 +23,14 @@ namespace Goexw.Config
                 }
 
                 return root;
+            }
+        }
+
+        public static string ChannelId
+        {
+            get
+            {
+                return "BZ";
             }
         }
     }
