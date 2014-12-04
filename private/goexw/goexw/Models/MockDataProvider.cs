@@ -83,33 +83,34 @@ namespace Goexw.Models
 
             });
 
-            mockData.Add(new MockProductCategory { id = 3, text = "Machinery, Hardware &amp; Tools" });
-            mockData.Add(new MockProductCategory { id = 4, text = "Gifts, Sports &amp; Toys" });
-            mockData.Add(new MockProductCategory { id = 5, text = "Home, Lights &amp; Construction" });
-            mockData.Add(new MockProductCategory { id = 6, text = "Health &amp; Beauty" });
-            mockData.Add(new MockProductCategory { id = 7, text = "Jewelry, Bags &amp; Shoes" });
-            mockData.Add(new MockProductCategory { id = 8, text = "Electrical Equipment, Components &amp; Telecom" });
-            mockData.Add(new MockProductCategory { id = 9, text = "Agriculture &amp; Food" });
-            mockData.Add(new MockProductCategory { id = 10, text = "Packaging, Advertising &amp; Office" });
-            mockData.Add(new MockProductCategory { id = 11, text = "Metallurgy, Chemicals, Rubber &amp; Plastics" });
+            mockData.Add(new MockProductCategory { id = 3, text = "Machinery, Hardware & Tools" });
+            mockData.Add(new MockProductCategory { id = 4, text = "Gifts, Sports & Toys" });
+            mockData.Add(new MockProductCategory { id = 5, text = "Home, Lights & Construction" });
+            mockData.Add(new MockProductCategory { id = 6, text = "Health & Beauty" });
+            mockData.Add(new MockProductCategory { id = 7, text = "Jewelry, Bags & Shoes" });
+            mockData.Add(new MockProductCategory { id = 8, text = "Electrical Equipment, Components & Telecom" });
+            mockData.Add(new MockProductCategory { id = 9, text = "Agriculture & Food" });
+            mockData.Add(new MockProductCategory { id = 10, text = "Packaging, Advertising & Office" });
+            mockData.Add(new MockProductCategory { id = 11, text = "Metallurgy, Chemicals, Rubber & Plastics" });
             mockData.Add(new MockProductCategory
-            {
-                id = 12,
-                text = "Other",
-                children = new List<MockProductCategory> 
-            { 
-                new MockProductCategory {
-                        id = 1201, text = "Other Stuffs", children = new List<MockProductCategory>
-                        {
-                            new MockProductCategory {id = 120101, text = "Transportation sub 1"},
-                            new MockProductCategory {id = 120102, text = "Transportation sub 1", children = new List<MockProductCategory> 
+                {
+                    id = 12,
+                    text = "Other",
+                    children = new List<MockProductCategory> 
+                    { 
+                    new MockProductCategory {
+                            id = 1201, text = "Other Stuffs", children = new List<MockProductCategory>
                             {
-                                new MockProductCategory {id = 12010201, text = "A deep one"}
-                            }}
+                                new MockProductCategory {id = 120101, text = "Transportation sub 1"},
+                                new MockProductCategory {id = 120102, text = "Transportation sub 1", 
+                                    children = new List<MockProductCategory> 
+                                    {
+                                        new MockProductCategory {id = 12010201, text = "A deep one"}
+                                    }}
+                            }
                         }
                     }
-            }
-            });
+                });
 
             return mockData;
         }

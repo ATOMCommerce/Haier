@@ -59,3 +59,14 @@ textarea {
 .goexw_cat_fa-trash-o:before {
     content: "x";
 }
+
+
+
+.nopadding {
+   padding: 0 !important;
+   margin: 0 !important;
+}
+
+.borderless tbody tr td, .borderless thead tr th {
+    border: none !important;
+}
