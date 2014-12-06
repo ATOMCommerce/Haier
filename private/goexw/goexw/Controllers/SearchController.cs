@@ -18,7 +18,7 @@ namespace Goexw.Controllers
             public String Title { get; set; }
             public String Description { get; set; }
         }
-        public ActionResult Index(String keyword)
+        public ActionResult Index(int category, String keyword, int price, int shipmethod)
         {
             
 

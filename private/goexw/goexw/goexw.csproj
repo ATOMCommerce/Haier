@@ -269,7 +269,7 @@
     <Content Include="Scripts\npm.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Scripts\searchcomponent.js" />
+    <Content Include="Scripts\searchpartial.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -317,7 +317,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Views\Cart\" />
     <Folder Include="Views\Order\" />
-    <Folder Include="Views\Product\" />
     <Folder Include="Views\Settings\" />
   </ItemGroup>
   <ItemGroup>

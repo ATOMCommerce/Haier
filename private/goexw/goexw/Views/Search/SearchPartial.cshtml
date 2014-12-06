@@ -1,59 +1,83 @@
 ﻿@using Goexw.Resources
 @model List<Goexw.Models.MockProductCategory>
 
-
 @{
     Layout = null;
 }
 
-
 <div class="row">
-    @using (@Html.BeginForm("Index", "Search", FormMethod.Get, new { @class = "form-inline col-md-12", role = "form" }))
+    @using (@Html.BeginForm(
+        "Index", "Search", 
+        FormMethod.Get, 
+        new { id = "searchform", @class = "form-inline col-md-12", role = "form" }))
     {
+        <!-- Hidden select element used for submit "category" parameter-->
+        <select id="search-category" name="category" class="collapse">
+            @foreach (var pc in @Model)
+            {
+                <option value="@pc.id">@pc.id - @pc.text</option>
+                if (pc.children == null)
+                {
+                    continue;
+                }
+                foreach (var child in pc.children)
+                {
+                    <option value="@child.id">@child.id - @child.text</option>
+                }
+            }
+        </select>
+
         <div class="form-group col-md-6">
             <div class="input-group col-md-12">
                 <div class="input-group-btn col-md-3 nopadding">
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">@Common.All_Categories <span class="caret"></span></button>
+                    <button type="button" 
+                            class="btn btn-default dropdown-toggle" 
+                            data-toggle="dropdown" 
+                            id="search-category-btn"
+                            aria-expanded="false"><span>@Common.All_Categories</span> <span class="caret"></span>
+                    </button>
                     <ul id="categoryList" class="dropdown-menu" role="menu">
                         @foreach (var pc in @Model)
                         {
-                            <li><a href="#">@pc.text</a></li>
+                            <li value="@pc.id"><a href="#">@pc.text</a></li>
                             if (pc.children == null)
                             {
                                 continue;
                             }
                             foreach (var child in pc.children)
                             {
-                                <li><a href="#"><span> -- </span>@child.text</a></li>
+                                <li value="@child.id"><a href="#"><span> -- </span>@child.text</a></li>
                             }
                         }
                     </ul>
                 </div>
-                <input id="keyword" name="keyword" type="text" class="form-control" placeholder="products keyword" style="min-width: 400px" />
+                <input type="text" name="keyword" class="form-control" placeholder="products keyword"/>
             </div>
         </div>
         <div class="form-group">
             <div class="input-group">
                 <div class="input-group-addon">Price: </div>
-                <input type="text" class="form-control" />
+                <input type="text" name="price" class="form-control" />
                 <div class="input-group-addon">$</div>
             </div>
         </div>
         <div class="form-group">
             <div class="input-group">
                 <div class="input-group-addon">Shipping: </div>
-                <select id="shipMethod" class="form-control">
-                    <option>Air</option>
-                    <option>Ship</option>
-                    <option>Train</option>
+                <select name="shipmethod" class="form-control">
+                    <option value="0">Air</option>
+                    <option value="1">Ship</option>
+                    <option value="2">Train</option>
                 </select>
             </div>
         </div>
         <div class="form-group">
             <div class="input-group">
-                <button class="btn btn-primary" onclick="submit()"><i class="glyphicon glyphicon-search"></i></button>
+                <button class="btn btn-primary" type="submit"><i class="glyphicon glyphicon-search"></i></button>
             </div>
         </div>
     }
+    
+    <script src="~/Scripts/searchpartial.js"></script>
 </div>
 
