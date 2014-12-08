@@ -115,5 +115,18 @@ namespace Goexw.Models
             return mockData;
         }
 
+
+        public static List<MockShipMethod> GetShipMethods()
+        {
+            var methods = new List<MockShipMethod>
+            {
+                new MockShipMethod() {Code = 0, Name = "Air"},
+                new MockShipMethod() {Code = 1, Name = "Ship"},
+                new MockShipMethod() {Code = 2, Name = "Train"}
+            };
+
+            return methods;
+        }
+
     }
 }

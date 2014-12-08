@@ -1,5 +1,6 @@
 ﻿@using Goexw.Resources
-@model List<Goexw.Models.MockProductCategory>
+@using Microsoft.Ajax.Utilities
+@model Goexw.ViewModels.SearchPartialViewModel
 
 @{
     Layout = null;
@@ -13,7 +14,7 @@
     {
         <!-- Hidden select element used for submit "category" parameter-->
         <select id="search-category" name="category" class="collapse">
-            @foreach (var pc in @Model)
+            @foreach (var pc in @Model.ProductCategories)
             {
                 <option value="@pc.id">@pc.id - @pc.text</option>
                 if (pc.children == null)
@@ -37,7 +38,7 @@
                             aria-expanded="false"><span>@Common.All_Categories</span> <span class="caret"></span>
                     </button>
                     <ul id="categoryList" class="dropdown-menu" role="menu">
-                        @foreach (var pc in @Model)
+                        @foreach (var pc in @Model.ProductCategories)
                         {
                             <li value="@pc.id"><a href="#">@pc.text</a></li>
                             if (pc.children == null)
@@ -65,9 +66,10 @@
             <div class="input-group">
                 <div class="input-group-addon">Shipping: </div>
                 <select name="shipmethod" class="form-control">
-                    <option value="0">Air</option>
-                    <option value="1">Ship</option>
-                    <option value="2">Train</option>
+                    @foreach (var c in @Model.ShipMethods)
+                    {
+                        <option value="@c.Code">@c.Name</option>
+                    }
                 </select>
             </div>
         </div>
