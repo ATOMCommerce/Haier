@@ -1,24 +1,33 @@
 ﻿@model List<Goexw.Controllers.SearchController.SearchResult>
-<div class="row">
-    <div class="col-md-3" style="background: lightblue">
-        <p>Category tree </p> 
-        <p>Category tree </p>
-        <p>Category tree </p>
-        <p>Category tree </p>
-        <p>Category tree </p>
-        <p>Category tree </p>
-    </div>
-    <div class="col-md-9" style="background: azure">
-        <div class="table">
-            @foreach (var item in Model) { 
-            <div class="row">
-                @item.Title
+<div class="container">
+    <div class="row">
+        <div class="col-md-3" style="background: lightblue">
+            <p>Category tree </p>
+            <p>Category tree </p>
+            <p>Category tree </p>
+            <p>Category tree </p>
+            <p>Category tree </p>
+            <p>Category tree </p>
+        </div>
+        <div class="col-md-9" style="background: azure">
+            <div class="table">
+                @foreach (var item in Model)
+                {
+                    <div class="row">
+                        <a href="@Url.Action("Detail", "Product")">@item.Title</a>
+                    </div>
+                    <div class="row">
+                        @item.Description
+                    </div>
+                    <hr />
+                }
             </div>
-            <div class="row">
-                @item.Description
-            </div>
-                <hr />
-            }
         </div>
     </div>
 </div>
+
+
+@section SearchPartial
+{
+    @{Html.RenderAction("SearchPartial", "Search");}
+}

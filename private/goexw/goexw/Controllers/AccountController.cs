@@ -45,7 +45,6 @@ namespace Goexw.Controllers
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
-            ViewBag.NoSearchBar = true;
             return View();
         }
 
@@ -143,7 +142,6 @@ namespace Goexw.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            ViewBag.NoSearchBar = true;
             return View();
         }
 

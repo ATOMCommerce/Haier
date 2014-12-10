@@ -18,16 +18,12 @@ namespace Goexw.Controllers
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
-            ViewBag.NoSearchBar = true;
-
             return View();
         }
 
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
-            ViewBag.NoSearchBar = true;
-
             return View();
         }
     }

@@ -38,12 +38,9 @@
             </div>        
         </div>
         
-        @if (ViewBag.NoSearchBar == null)
-        {
-            <div id="SearchPartial" class="container">
-                @{Html.RenderAction("SearchPartial", "Search");}
-            </div>
-        }
+        <div id="SearchPartial" class="container">
+            @RenderSection("SearchPartial", required:false)
+        </div>
 
 
         <div class="container body-content">
