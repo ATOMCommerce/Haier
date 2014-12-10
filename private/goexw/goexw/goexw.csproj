@@ -167,6 +167,7 @@
     <Compile Include="Business\Managers\SalesOrderManager.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Business\Models\Cart.cs" />
     <Compile Include="Business\Models\Delivery.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -317,7 +318,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Views\Cart\" />
     <Folder Include="Views\Order\" />
-    <Folder Include="Views\Product\" />
     <Folder Include="Views\Settings\" />
   </ItemGroup>
   <ItemGroup>
