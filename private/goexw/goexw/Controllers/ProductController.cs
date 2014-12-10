@@ -9,7 +9,7 @@ namespace Goexw.Controllers
     public class ProductController : Controller
     {
 
-        public ActionResult Detail()
+        public ActionResult Detail(string id)
         {
             return View();
         }

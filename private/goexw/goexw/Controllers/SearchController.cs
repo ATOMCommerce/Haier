@@ -1,12 +1,12 @@
-﻿using Goexw.Models;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Web;
+using Goexw.Models;
+using System;
 using System.Web.Mvc;
-using System.Web.Script.Serialization;
 using Goexw.ViewModels;
+using Mock.MsStore.Mfl.Core.Models;
+using Mock.MsStore.Mfl.Core.Models.Response;
+using Newtonsoft.Json;
 
 namespace Goexw.Controllers
 {
@@ -19,20 +19,33 @@ namespace Goexw.Controllers
             public String Title { get; set; }
             public String Description { get; set; }
         }
-        public ActionResult Index(int category, String keyword, int price, int shipmethod)
+        public ActionResult Index(int? category, String keyword, int? price, int? shipmethod, int? page)
         {
-            
+            var responseBody = MockDataProvider.GetCatalogReponse();
+            var data = JsonConvert.DeserializeObject<CatalogResponseModel>(responseBody);
 
-            var webClient = new WebClient();
-            Object res = null;
-            using (webClient)
+            var list = data.CatalogItems.ToList();
+            int pageNo = page.GetValueOrDefault(1);
+
+            var vm = new QueryCatalogViewModel
             {
-                var json = webClient.DownloadString("http://bingsearchproxy.azurewebsites.net/api/Search?query=" + keyword);
-                JavaScriptSerializer serializer = new JavaScriptSerializer();
-                res = serializer.Deserialize(json, typeof(List<SearchResult>));
-            }
+                CatalogItems = list.GetRange( 
+                    (pageNo-1) * QueryCatalogViewModel.ItemCountPerPage , 
+                    QueryCatalogViewModel.ItemCountPerPage),
+                Page = pageNo,
+                HasMoreItem = pageNo * QueryCatalogViewModel.ItemCountPerPage < list.Count,
+                Parameters = new QueryParameter
+                {
+                    Category = category.GetValueOrDefault(),
+                    Keyword = keyword,
+                    Price = price.GetValueOrDefault(),
+                    Shipmethod = shipmethod.GetValueOrDefault(),
+                    Page = page.GetValueOrDefault(1)
+                }
+            };
 
-            return View(res);
+
+            return View(vm);
         }
 
 

@@ -1,28 +1,78 @@
-﻿@model List<Goexw.Controllers.SearchController.SearchResult>
-<div class="container">
-    <div class="row">
-        <div class="col-md-3" style="background: lightblue">
-            <p>Category tree </p>
-            <p>Category tree </p>
-            <p>Category tree </p>
-            <p>Category tree </p>
-            <p>Category tree </p>
-            <p>Category tree </p>
-        </div>
-        <div class="col-md-9" style="background: azure">
-            <div class="table">
-                @foreach (var item in Model)
-                {
-                    <div class="row">
-                        <a href="@Url.Action("Detail", "Product")">@item.Title</a>
-                    </div>
-                    <div class="row">
-                        @item.Description
-                    </div>
-                    <hr />
-                }
+﻿@model Goexw.ViewModels.QueryCatalogViewModel
+<div class="row">
+    <div class="col-md-3" style="background: lightblue">
+        <p>Category tree </p>
+        <p>Category tree </p>
+        <p>Category tree </p>
+        <p>Category tree </p>
+        <p>Category tree </p>
+        <p>Category tree </p>
+    </div>
+    <div class="col-md-9">
+        <div class="row clearfix">
+            <div class="col-md-12">
+                <ul class="pager no-margin pull-right">
+                    <li class="previous @(@Model.Page == 1 ? "disabled":"")">
+                        @if (@Model.Page == 1)
+                        {
+                            <a href="#">Previous</a>
+                        }
+                        else
+                        {
+                            <a href="@Url.Action("Index","Search",new
+                                     {
+                                         category = @Model.Parameters.Category,
+                                         keyword = @Model.Parameters.Keyword,
+                                         page = @Model.Parameters.Page - 1,
+                                         price = @Model.Parameters.Price,
+                                         shipmethod = @Model.Parameters.Shipmethod
+                                     })">Previous</a>
+                        }
+                    </li>
+                    <li class="next @(@Model.HasMoreItem ? "" : "disabled")">
+                        @if (Model.HasMoreItem)
+                        {
+                            <a href="@Url.Action("Index", "Search", new
+                                     {
+                                         category = @Model.Parameters.Category,
+                                         keyword = @Model.Parameters.Keyword,
+                                         page = @Model.Parameters.Page + 1,
+                                         price = @Model.Parameters.Price,
+                                         shipmethod = @Model.Parameters.Shipmethod
+                                     })">Next</a>
+                        }
+                        else
+                        {
+                            <a href="#">Next</a>
+                        }
+                    </li>
+                </ul>
             </div>
         </div>
+
+
+        @foreach (var item in @Model.CatalogItems)
+        {
+            <div class="row">
+                <div class="col-md-3">
+                    <img src="~/Resources/images/mp1.jpg" class="img-thumbnail" />
+                </div>
+
+                <div class="col-md-9" style="background: aquamarine;">
+                    Detail Information:
+                    <a href="@Url.Action("Detail", "Product",new { id = @item.Sku })">
+                        <h5>Sku: @item.Sku</h5>
+                    </a>
+
+                    <div>
+                        <span>UnitPrice: @item.UnitPrice</span>
+                        <span>SupplierId: @item.SupplierId</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="min-height: 10px"></div>
+        }
     </div>
 </div>
 

@@ -202,14 +202,20 @@
     </Compile>
     <Compile Include="Helper\ProductItemLocator.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Catalog\CatalogAction.cs" />
+    <Compile Include="Models\Catalog\CatalogItem.cs" />
+    <Compile Include="Models\Catalog\CatalogRequestModel.cs" />
+    <Compile Include="Models\Catalog\CatalogResponseModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\MockDataProvider.cs" />
-    <Compile Include="Models\MockProductCategory.cs" />
-    <Compile Include="Models\MockPromotion.cs" />
-    <Compile Include="Models\MockShipMethod.cs" />
+    <Compile Include="Models\Mock\MockCatalogResponse.cs" />
+    <Compile Include="Models\Mock\MockDataProvider.cs" />
+    <Compile Include="Models\Mock\MockProductCategory.cs" />
+    <Compile Include="Models\Mock\MockPromotion.cs" />
+    <Compile Include="Models\Mock\MockShipMethod.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\QueryCatalogViewModel.cs" />
     <Compile Include="ViewModels\SearchPartialViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

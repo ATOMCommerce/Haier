@@ -70,3 +70,8 @@ textarea {
 .borderless tbody tr td, .borderless thead tr th {
     border: none !important;
 }
+
+.no-margin {
+    margin: 0 !important;
+}
+

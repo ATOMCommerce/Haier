@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Goexw.Models.Mock;
 
 namespace Goexw.Models
 {
@@ -126,6 +127,11 @@ namespace Goexw.Models
             };
 
             return methods;
+        }
+
+        public static String GetCatalogReponse()
+        {
+            return MockCatalogResponse.GetHttpBody();
         }
 
     }
