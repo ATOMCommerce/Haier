@@ -27,14 +27,14 @@ namespace Goexw.Controllers
             var list = data.CatalogItems.ToList();
             int pageNo = page.GetValueOrDefault(1);
 
-            var vm = new QueryCatalogViewModel
+            var vm = new QueryCatalogReportViewModel
             {
                 CatalogItems = list.GetRange( 
-                    (pageNo-1) * QueryCatalogViewModel.ItemCountPerPage , 
-                    QueryCatalogViewModel.ItemCountPerPage),
+                    (pageNo-1) * QueryCatalogReportViewModel.ItemCountPerPage , 
+                    QueryCatalogReportViewModel.ItemCountPerPage),
                 Page = pageNo,
-                HasMoreItem = pageNo * QueryCatalogViewModel.ItemCountPerPage < list.Count,
-                Parameters = new QueryParameter
+                HasMoreItem = pageNo * QueryCatalogReportViewModel.ItemCountPerPage < list.Count,
+                Parameters = new QueryCatalogFormViewModel
                 {
                     Category = category.GetValueOrDefault(),
                     Keyword = keyword,
@@ -71,11 +71,18 @@ namespace Goexw.Controllers
             return View();
         }
 
-        public ActionResult SearchPartial()
+        public ActionResult SearchPartial(int? category, String keyword, int? price, int? shipmethod)
         {
             var model = new SearchPartialViewModel(
                 MockDataProvider.GetProductCategories(),
-                MockDataProvider.GetShipMethods());
+                MockDataProvider.GetShipMethods(), 
+                new QueryCatalogFormViewModel
+                {
+                    Category = category.GetValueOrDefault(),
+                    Keyword = keyword,
+                    Price = price.GetValueOrDefault(),
+                    Shipmethod = shipmethod.GetValueOrDefault()
+                });
 
 
             return PartialView(model);

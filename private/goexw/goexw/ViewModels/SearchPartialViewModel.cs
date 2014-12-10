@@ -14,13 +14,18 @@ namespace Goexw.ViewModels
         public List<MockShipMethod> ShipMethods { get; private set; }
 
 
+        public QueryCatalogFormViewModel UserInput { get; private set; }
+
+
 
         public SearchPartialViewModel(
             List<MockProductCategory> categories, 
-            List<MockShipMethod> methods)
+            List<MockShipMethod> methods,
+            QueryCatalogFormViewModel userInput)
         {
             ProductCategories = categories;
             ShipMethods = methods;
+            UserInput = userInput;
         }
     }
 }

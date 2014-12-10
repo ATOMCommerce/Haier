@@ -31,6 +31,15 @@ namespace Goexw.Models
         public static List<MockProductCategory> GetProductCategories()
         {
             var mockData = new List<MockProductCategory>();
+            
+
+            mockData.Add(new MockProductCategory
+            {
+                children = null, 
+                id = 0, 
+                text = "All Category"
+            });
+
             mockData.Add(new MockProductCategory
             {
                 id = 1,

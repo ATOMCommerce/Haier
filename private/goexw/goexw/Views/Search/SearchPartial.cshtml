@@ -8,22 +8,28 @@
 
 <div class="row">
     @using (@Html.BeginForm(
-        "Index", "Search", 
-        FormMethod.Get, 
+        "Index", "Search",
+        FormMethod.Get,
         new { id = "searchform", @class = "form-inline col-md-12", role = "form" }))
     {
         <!-- Hidden select element used for submit "category" parameter-->
         <select id="search-category" name="category" class="collapse">
             @foreach (var pc in @Model.ProductCategories)
             {
-                <option value="@pc.id">@pc.id - @pc.text</option>
+                <option value="@pc.id" 
+                    @(pc.id == @Model.UserInput.Category ? "selected" : "")>
+                    @pc.id - @pc.text
+                </option>
                 if (pc.children == null)
                 {
                     continue;
                 }
                 foreach (var child in pc.children)
                 {
-                    <option value="@child.id">@child.id - @child.text</option>
+                    <option value="@child.id" 
+                            @(child.id == @Model.UserInput.Category ? "selected" : "")>
+                        @child.id - @child.text
+                    </option>
                 }
             }
         </select>
@@ -31,11 +37,32 @@
         <div class="form-group col-md-6">
             <div class="input-group col-md-12">
                 <div class="input-group-btn col-md-3 nopadding">
-                    <button type="button" 
-                            class="btn btn-default dropdown-toggle" 
-                            data-toggle="dropdown" 
+                    <button type="button"
+                            class="btn btn-default dropdown-toggle"
+                            data-toggle="dropdown"
                             id="search-category-btn"
-                            aria-expanded="false"><span>@Common.All_Categories</span> <span class="caret"></span>
+                            aria-expanded="false">
+                        @foreach (var pc in @Model.ProductCategories)
+                        {
+                            if (pc.id == @Model.UserInput.Category)
+                            {
+                                <span>@pc.text</span>
+                                break;
+                            }
+                            if (pc.children == null)
+                            {
+                                continue;
+                            }
+                            var child = pc.children.FirstOrDefault(c => c.id == @Model.UserInput.Category);
+                            if (child == null)
+                            {
+                                continue;
+                            }
+
+                            <span>@child.text</span>
+                            break;
+                        }
+                        <span class="caret"></span>
                     </button>
                     <ul id="categoryList" class="dropdown-menu" role="menu">
                         @foreach (var pc in @Model.ProductCategories)
@@ -52,13 +79,17 @@
                         }
                     </ul>
                 </div>
-                <input type="text" name="keyword" class="form-control" placeholder="products keyword"/>
+                <input type="text" 
+                       name="keyword" 
+                       class="form-control" 
+                       placeholder="products keyword" 
+                       value="@Model.UserInput.Keyword"/>
             </div>
         </div>
         <div class="form-group">
             <div class="input-group">
                 <div class="input-group-addon">Price: </div>
-                <input type="number" name="price" class="form-control text-right" />
+                <input type="number" name="price" class="form-control text-right" value="@Model.UserInput.Price" />
                 <div class="input-group-addon">$</div>
             </div>
         </div>
@@ -68,7 +99,10 @@
                 <select name="shipmethod" class="form-control">
                     @foreach (var c in @Model.ShipMethods)
                     {
-                        <option value="@c.Code">@c.Name</option>
+                        <option value="@c.Code"
+                                @(c.Code == @Model.UserInput.Shipmethod ? "selected" : "")>
+                            @c.Name
+                            </option>
                     }
                 </select>
             </div>
@@ -79,7 +113,7 @@
             </div>
         </div>
     }
-    
+
     <script src="~/Scripts/searchpartial.js"></script>
 </div>
 

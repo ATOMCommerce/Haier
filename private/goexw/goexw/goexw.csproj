@@ -215,7 +215,8 @@
     <Compile Include="Models\Mock\MockShipMethod.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="ViewModels\QueryCatalogViewModel.cs" />
+    <Compile Include="ViewModels\QueryCatalogFormViewModel.cs" />
+    <Compile Include="ViewModels\QueryCatalogReportViewModel.cs" />
     <Compile Include="ViewModels\SearchPartialViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

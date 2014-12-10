@@ -1,4 +1,4 @@
-﻿@model Goexw.ViewModels.QueryCatalogViewModel
+﻿@model Goexw.ViewModels.QueryCatalogReportViewModel
 <div class="row">
     <div class="col-md-3" style="background: lightblue">
         <p>Category tree </p>
@@ -60,7 +60,14 @@
 
                 <div class="col-md-9" style="background: aquamarine;">
                     Detail Information:
-                    <a href="@Url.Action("Detail", "Product",new { id = @item.Sku })">
+                    <a href="@Url.Action("Detail", "Product",new
+                             {
+                                 id = @item.Sku,
+                                 category = @Model.Parameters.Category,
+                                 keyword = @Model.Parameters.Keyword,
+                                 price = @Model.Parameters.Price,
+                                 shipmethod = @Model.Parameters.Shipmethod
+                             })">
                         <h5>Sku: @item.Sku</h5>
                     </a>
 
