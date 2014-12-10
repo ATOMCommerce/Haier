@@ -6,6 +6,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
+using Goexw.ViewModels;
 
 namespace Goexw.Controllers
 {
@@ -18,7 +19,7 @@ namespace Goexw.Controllers
             public String Title { get; set; }
             public String Description { get; set; }
         }
-        public ActionResult Index(String keyword)
+        public ActionResult Index(int category, String keyword, int price, int shipmethod)
         {
             
 
@@ -59,8 +60,12 @@ namespace Goexw.Controllers
 
         public ActionResult SearchPartial()
         {
-            var mockData = MockDataProvider.GetProductCategories();
-            return PartialView(mockData);
+            var model = new SearchPartialViewModel(
+                MockDataProvider.GetProductCategories(),
+                MockDataProvider.GetShipMethods());
+
+
+            return PartialView(model);
         }
     }
 }
