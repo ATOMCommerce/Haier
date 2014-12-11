@@ -79,5 +79,6 @@ textarea {
     height : auto;
     border: solid 1px #ccc;
     background-color: rgb(245, 245, 245);
+    z-index: 1000;
 }
 

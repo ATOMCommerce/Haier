@@ -536,7 +536,7 @@ function Cart() {
         if (value.match(/<\s*img.*src\=/)) {
             return value;
         } else {
-            return "<img src=\"" + value + "\" />";
+            return "<img height='32' width='32' src=\"" + value + "\" />";
         }
     }
 
@@ -996,5 +996,5 @@ function showCartPanel()
 {
     var cartPanel = $('#cartPartial');
     cartPanel.show();
-    cartPanel.css({ "position": "absolute", "right": "16px", "z-index": "1000", "background-color": "rgb(245, 245, 245)" });
+    cartPanel.css({ "position": "absolute", "right": "16px", "top":  "50px" });
 }

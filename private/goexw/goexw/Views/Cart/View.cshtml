@@ -23,7 +23,7 @@
     #content {
         background: url(images/bg_content.png);
         width: 440px;
-        margin: 10px auto 20px auto;
+        margin: 10px auto 5px auto;
     }
 
     body {
@@ -127,15 +127,15 @@
                     <div class="itemName">Black Gold</div>
                     <div class="itemPrice">$58.00</div>
                     <div class="itemOptions"></div>
-                    <div class="itemQuantity"><input onblur="simpleCart.updateQuantity('name=Black Gold','price=58','image=images/thumbs/blackGold.jpg','quantity=4','new_quantity=' + this.value);return false;" type="text" value="4"></div>
+                    <div class="itemQuantity"><input onblur="simpleCart.updateQuantity('name=Black Gold','price=58','image=images/thumbs/blackGold.jpg','quantity='+this.value);return false;" type="text" value="4"></div>
                     <div class="itemTotal">$232.00</div>
-                </div><div class="totalRow">
-                    <div class="totalItems"></div>
-                    <div class="totalPrice"></div>
                 </div>
             </div>
+            <div class="totalRow">
+                <div class="totalItems"></div>
+                <div class="totalPrice"></div>
+            </div>
         </div>
-        
         <div style="clear:both;"></div>
     </div>
     <div>
@@ -143,4 +143,5 @@
         <a class="simpleCart_empty" style="margin-left: 20px;" href="#">Empty Cart</a>
         <a style="float:right; margin-right: 40px;" href="#">Checkout</a>
     </div>
+    <div style="margin-top: 10px; border-bottom: 2px solid black; text-align: center; padding-bottom: -5px;"><a style="width:100%; text-align:center; font-size: 16px; color: #000;" href="#" onclick="$('#cartPartial').hide(); return false;">^</a></div>
 </div>
