@@ -1,0 +1,146 @@
+﻿<style>
+    html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        outline: 0;
+        font-size: 100%;
+        vertical-align: baseline;
+        background: transparent;
+    }
+
+    :focus {
+        outline: 0;
+    }
+
+    .simpleCart_items {
+        float: left;
+        clear: left;
+        width: 446px;
+        margin: 20px;
+    }
+
+    #content {
+        background: url(images/bg_content.png);
+        width: 440px;
+        margin: 10px auto 20px auto;
+    }
+
+    body {
+        line-height: 1;
+    }
+
+    body {
+        background: url(images/bg.jpg);
+        font: bold 12px Helvetica, Arial, sans-serif;
+    }
+
+    .itemContainer {
+        clear: both;
+        width: 543px;
+        padding: 15px 0;
+        font-size: 11px;
+        line-height: 25px;
+        height: 10px;
+    }
+
+    .totalRow {
+        clear: both;
+        float: left;
+        margin-top: 10px;
+    }
+
+    .totalItems {
+        float: left;
+        width: 105px;
+        margin-left: 295px;
+        text-align: center;
+    }
+
+    .totalPrice {
+        float: right;
+        text-align: right;
+    }
+
+    .itemImage {
+        float: left;
+        width: 80px;
+    }
+
+    .itemName {
+        float: left;
+        width: 100px;
+    }
+
+    .itemPrice {
+        float: left;
+        width: 55px;
+        color: #418932;
+    }
+
+    .itemQuantity {
+        float: left;
+        width: 105px;
+        vertical-align: middle;
+        text-align: center;
+    }
+
+    .itemTotal {
+        float: left;
+        color: #c23f26;
+        text-align: right;
+        width: 45px;
+    }
+
+    .itemQuantity input {
+        width: 20px;
+        height: 20px;
+        border: 1px solid #ccc;
+        margin: 0 auto;
+        display: block;
+        font-size: 11px;
+        line-height: normal;
+    }
+
+    .itemImage img {
+        vertical-align: middle;
+    }
+
+    .cartHeaders div {
+        color: #333;
+    }
+</style>
+
+<div id="content">
+    <div id="left">
+        <div>
+            <div class="simpleCart_items">
+                <div class="cartHeaders">
+                    <div class="itemImage">Image</div>
+                    <div class="itemName">Name</div>
+                    <div class="itemPrice">Price</div>
+                    <div class="itemQuantity">Quantity</div>
+                    <div class="itemTotal">Total</div>
+                </div>
+                <div class="itemContainer">
+                    <div class="itemImage"><img src="images/thumbs/blackGold.jpg"></div>
+                    <div class="itemName">Black Gold</div>
+                    <div class="itemPrice">$58.00</div>
+                    <div class="itemOptions"></div>
+                    <div class="itemQuantity"><input onblur="simpleCart.updateQuantity('name=Black Gold','price=58','image=images/thumbs/blackGold.jpg','quantity=4','new_quantity=' + this.value);return false;" type="text" value="4"></div>
+                    <div class="itemTotal">$232.00</div>
+                </div><div class="totalRow">
+                    <div class="totalItems"></div>
+                    <div class="totalPrice"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div style="clear:both;"></div>
+    </div>
+    <div>
+        <!--Here's the Links to Checkout and Empty Cart-->
+        <a class="simpleCart_empty" style="margin-left: 20px;" href="#">Empty Cart</a>
+        <a style="float:right; margin-right: 40px;" href="#">Checkout</a>
+    </div>
+</div>

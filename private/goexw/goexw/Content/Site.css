@@ -75,3 +75,9 @@ textarea {
     margin: 0 !important;
 }
 
+.shoppingCart {
+    height : auto;
+    border: solid 1px #ccc;
+    background-color: rgb(245, 245, 245);
+}
+

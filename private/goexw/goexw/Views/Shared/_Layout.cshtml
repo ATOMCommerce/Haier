@@ -15,8 +15,13 @@
     @*@Scripts.Render("~/bundles/applogic")*@
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+    <script type="text/javascript" src="~/Scripts/simpleCart.js"></script>
 </head>
 <body>
+    <script type="text/javascript">
+        simpleCart.cartHeaders = ['Image', 'Name', 'Price', 'Quantity_input', 'Total'];
+        simpleCart.add('bid=test','quantity=1', 'name=Black Gold', 'price=58', 'image=images/thumbs/blackGold.jpg');
+    </script>
     <div class="navbar navbar-inverse">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -38,6 +43,10 @@
 
     <div id="SearchPartial" class="container">
         @RenderSection("SearchPartial", required: false)
+    </div>
+
+    <div id="cartPartial" class="shoppingCart" style="display: none;">
+        @Html.Partial("~/Views/Cart/View.cshtml")
     </div>
 
 
