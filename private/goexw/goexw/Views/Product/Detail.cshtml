@@ -1,4 +1,6 @@
-﻿<div class="row">
+﻿@model Goexw.ViewModels.ProductDetailViewModel
+
+<div class="row">
     <ol class="breadcrumb">
         <li><a href="#">Home</a></li>
         <li><a href="#">Products</a></li>
@@ -9,8 +11,6 @@
 </div>
 
 <div class="row">
-
-
     <!-- slider production pictures -->
     <div class="col-md-5 nopadding">
         <div id="carousel-product-pictures" class="carousel slide" data-ride="carousel">
@@ -57,7 +57,7 @@
 
     <!-- detail information list -->
     <div class="col-md-4">
-        <h2>House1</h2>
+        <h1>Product Name</h1>
         <table class="table borderless">
             <tbody>
                 <tr>
@@ -67,6 +67,10 @@
                 <tr>
                     <td>Price:</td>
                     <td>9000</td>
+                </tr>
+                <tr>
+                    <td>Sku:</td>
+                    <td>@Model.Sku</td>
                 </tr>
                 <tr>
                     <td>Quantity Available:</td>
