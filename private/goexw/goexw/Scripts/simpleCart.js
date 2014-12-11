@@ -220,6 +220,7 @@ function Cart() {
     }
 
     this.customCheckout = function () {
+
         return;
     }
 
@@ -997,4 +998,9 @@ function showCartPanel()
     var cartPanel = $('#cartPartial');
     cartPanel.show();
     cartPanel.css({ "position": "absolute", "right": "16px", "top":  "50px" });
+}
+
+function shoppingCartCheckOut()
+{
+    return false;
 }

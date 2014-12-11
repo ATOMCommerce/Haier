@@ -1,0 +1,166 @@
+﻿@model IEnumerable<Goexw.Business.Models.Order>
+
+<style scoped>
+        #organizer {
+            width: 300px;
+            margin: 0 auto;
+            padding: 47px 0 0 0;
+            background: url('@Url.Content("~/Content/web/panelbar/orgHead.png")') transparent no-repeat 0 0;
+        }
+        #bottom {
+            width: 300px;
+            height: 90px;
+            background: url('@Url.Content("~/Content/web/panelbar/orgFoot.png")') transparent no-repeat 0 0;
+        }
+        .teamMate:after {
+            content: ".";
+            display: block;
+            height: 0;
+            line-height: 0;
+            clear: both;
+            visibility: hidden;
+        }
+        .teamMate h2 {
+            font-size: 1.4em;
+            font-weight: normal;
+            padding-top: 20px;
+        }
+        .teamMate p {
+            margin: 5px 0;
+        }
+        .teamMate img {
+            float: left;
+            margin: 5px 15px 5px 5px;
+            border: 1px solid #ccc;
+        }
+</style>
+
+<div class="container">
+    <div class="cts-header">Order History</div>
+    <div class="tbl-orders">
+        <table id="itemlines">
+            @if (Model != null)
+            {
+                foreach (var order in Model)
+                {
+                    <tr>
+                        <td>
+                            <div class="itemheader">
+                                <div class="itemimg">Image</div>
+                                <div class="item">Name</div>
+                                <div class="itemprice">Price</div>
+                                <div class="itemqty">Quantity</div>
+                                <div class="operation">@order.AtomOrder.Status</div>
+                                <div class="operation">Operation</div>
+                                <div style="clear:both; display:none;"></div>
+                            </div>
+                        </td>
+                    </tr>
+                    foreach (var line in order.SalesLines)
+                    {
+                        <tr>
+                            <td>
+                                <div class="itemline">
+                                    <div class="itemimg">
+                                        <img src="@line.Item.Image" />
+                                    </div>
+                                    <div class="item">@line.Item.Name</div>
+                                    <div class="itemprice">@line.Item.Price</div>
+                                    <div class="itemqty">@line.Quantity</div>
+                                    <div class="operation"></div>
+                                    <div style="clear:both; display:none;"></div>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+
+                }
+            }
+        </table>
+    </div>
+</div>
+
+<style scoped>
+    #itemlines {
+        border: 1px solid #e5e5e5;
+        width: 1140px;
+        min-width: 1140px;
+        max-width: 1140px;
+        margin-left: -15px;
+    }
+
+    .cts-header {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        vertical-align: middle;
+        color: #428bca;
+        font-size: 40px;
+        font-weight: 600;
+    }
+
+    .itemheader {
+        height: 30px;
+        color: #3e6b99;
+        border-bottom: 1px solid #e5e5e5;
+        background-color: rgb(216, 237, 247);
+    }
+
+        .itemheader > * {
+            height: 30px;
+            color: #3e6b99;
+            line-height: 30px;
+            vertical-align: middle;
+            text-align: center;
+            border-right: 1px solid #e5e5e5;
+            float: left;
+        }
+
+    .itemline {
+        height: 50px;
+        color: #3e6b99;
+        border-bottom: 1px solid #e5e5e5;
+        /*padding-top: 10px;
+        padding-bottom: 10px;*/
+    }
+
+        .itemline > * {
+            height: 50px;
+            color: #3e6b99;
+            line-height: 40px;
+            vertical-align: middle;
+            text-align: center;
+            border-right: 1px solid #e5e5e5;
+            float: left;
+            padding: 5px 0;
+            overflow-x: hidden;
+        }
+
+    .cb {
+        width: 50px;
+    }
+
+    .itemimg {
+        width: 200px;
+    }
+
+        .itemimg > image {
+            width: 40px;
+            height: 40px;
+        }
+
+    .itemprice {
+        width: 200px;
+    }
+
+    .item {
+        width: 200px;
+    }
+
+    .itemqty {
+        width: 200px;
+    }
+
+    .operation {
+        width: 150px;
+    }
+</style>
