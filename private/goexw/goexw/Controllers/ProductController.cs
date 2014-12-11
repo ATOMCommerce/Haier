@@ -10,12 +10,31 @@ namespace Goexw.Controllers
     public class ProductController : Controller
     {
 
-        public ActionResult Detail(string id)
+        public ActionResult Detail(string id, string keyword)
         {
-            var vm = new ProductDetailViewModel
+
+            var catalogs = QueryCatalogReportViewModel.QueryCatalogByKeyword(keyword);
+            var catalog = catalogs.FirstOrDefault(i => i.Sku == id);
+
+            ProductDetailViewModel vm;
+            if (catalog == null)
             {
-                Sku = id
-            };
+                vm = new ProductDetailViewModel
+                {
+                    Sku = "<sku:No such product>",
+                    UnitPrice = 9999999
+                };
+            }
+            else
+            {
+                vm = new ProductDetailViewModel
+                {
+                    Sku = id,
+                    UnitPrice = catalog.UnitPrice
+                };
+            }
+            
+
             return View(vm);
         }
     }

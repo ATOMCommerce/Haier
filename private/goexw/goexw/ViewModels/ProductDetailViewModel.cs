@@ -8,5 +8,7 @@ namespace Goexw.ViewModels
     public class ProductDetailViewModel
     {
         public String Sku { get; set; }
+
+        public double UnitPrice { get; set; }
     }
 }
