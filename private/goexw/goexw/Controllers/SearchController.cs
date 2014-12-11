@@ -73,16 +73,43 @@ namespace Goexw.Controllers
 
         public ActionResult SearchPartial(int? category, String keyword, int? price, int? shipmethod)
         {
-            var model = new SearchPartialViewModel(
-                MockDataProvider.GetProductCategories(),
-                MockDataProvider.GetShipMethods(), 
-                new QueryCatalogFormViewModel
+            var categories = new List<SearchCategoryItemViewModel>();
+
+            foreach (var item in MockDataProvider.GetProductCategories())
+            {
+                categories.Add(new SearchCategoryItemViewModel
                 {
-                    Category = category.GetValueOrDefault(),
-                    Keyword = keyword,
-                    Price = price.GetValueOrDefault(),
-                    Shipmethod = shipmethod.GetValueOrDefault()
+                    Id = item.id,
+                    Name = item.text,
+                    IsSubItem = false
                 });
+
+                if (item.children == null) continue;
+
+                categories.AddRange(
+                    from subitem
+                    in item.children
+                    select new SearchCategoryItemViewModel
+                    {
+                        Id = subitem.id, 
+                        Name = subitem.text,
+                        IsSubItem = true
+                    } );
+            }
+
+
+            var shipmethods = (
+                from i in MockDataProvider.GetShipMethods()
+                select new SelectListItem {Text = i.Name, Value = i.Code.ToString()}).ToList();
+
+
+            var model = new SearchPartialViewModel(
+                categories,
+                shipmethods, 
+                category.GetValueOrDefault(),
+                keyword,
+                price.GetValueOrDefault(),
+                shipmethod.GetValueOrDefault() );
 
 
             return PartialView(model);
