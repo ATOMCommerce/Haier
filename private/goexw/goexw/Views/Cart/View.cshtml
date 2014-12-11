@@ -103,7 +103,6 @@
 
 <script type="text/javascript">
     function shoppingCartCheckOut() {
-        debugger;
         var custPrice = $('#custPrice').val();
         var cartModel = {};
         cartModel.CustPrice = custPrice;
@@ -112,11 +111,12 @@
             var item = simpleCart.items[i];
             var line = {};
             line.Id = item.sku;
+            line.Price = item.price;
             line.Quantity = item.quantity;
             cartModel.Lines.push(line);
         }
 
-        $('commmitOrder').val(JSON.stringify(cartModel));
+        $('#commitOrder').val(JSON.stringify(cartModel));
         $("#postForm").submit();
     }
 </script>
@@ -165,7 +165,7 @@
 <div style="display:none">
     @Html.BeginForm("View", "Cart", FormMethod.Post, new { id = "postForm" })
     {
-    @Html.Hidden("commmitOrder", "")
+    @Html.Hidden("commitOrder", "")
     <input type="submit" value="submit" />
     }
 </div>

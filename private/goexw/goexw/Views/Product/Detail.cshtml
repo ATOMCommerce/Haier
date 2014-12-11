@@ -86,7 +86,7 @@
                     <input type="number" class="form-control" id="quantity" />
                 </div>
             </div>
-            <button class="btn btn-primary" onclick="simpleCart.add('sku=2', 'name=House1', 'price=9000', 'image=/Resources/images/mp1.jpg', 'quantity=1'); showCartPanel(); return false;">Add to Cart</button>
+            <button class="btn btn-primary" onclick="simpleCart.add('sku='+@Model.Sku, 'name=House1', 'price=9000', 'image=/Resources/images/mp1.jpg', 'quantity=1'); showCartPanel(); return false;">Add to Cart</button>
         </form>
 
     </div>

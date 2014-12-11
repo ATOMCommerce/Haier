@@ -7,6 +7,8 @@ namespace Goexw.Models
 {
     public class CartModel
     {
+        public string CustomerID { get { return "TestCustomer"; } }
+
         public string UserId { get; set; }
 
         public List<CartLineModel> Lines { get; set; }

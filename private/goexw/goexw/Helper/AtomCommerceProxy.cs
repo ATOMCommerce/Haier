@@ -38,7 +38,7 @@ namespace Goexw.Helper
             return null;
         }
 
-        private static string PostXmlData(string uri, string data)
+        public static string PostXmlData(string uri, string data)
         {
             HttpResponseMessage response = null;
             using (var client = new HttpClient())

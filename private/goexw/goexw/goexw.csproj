@@ -222,6 +222,12 @@
     <Compile Include="ViewModels\SearchPartialViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Business\Content\Order.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Business\Content\Query.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />

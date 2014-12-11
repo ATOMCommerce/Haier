@@ -8,6 +8,11 @@ namespace Goexw.Controllers
 {
     public class OrderController : Controller
     {
+        public ActionResult Index()
+        {
+            return View();
+        }
+
         public ActionResult AllOrders()
         {
             return View();

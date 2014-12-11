@@ -1,0 +1,154 @@
+<?xml version="1.0"?>
+<SalesOrderRequestModel>
+  <Version>CbyVIF</Version>
+  <ChannelId>Haier</ChannelId>
+  <RequestGuid>6e4ca16f-4f94-408a-a9d0-7f5059a25709</RequestGuid>
+  <RequestTimeStamp>2014-11-28T15:17:15.7222673+08:00</RequestTimeStamp>
+  <RequestPagingInfo>
+    <PageSize>0</PageSize>
+    <PageIndex>0</PageIndex>
+  </RequestPagingInfo>
+  <FilterCriteria>
+    <Version>DAOvxF</Version>
+    <FromDate>2014-11-28T15:17:15.7402703+08:00</FromDate>
+    <ToDate>2014-11-28T15:17:15.7412702+08:00</ToDate>
+    <LastSyncDate>2014-11-28T15:17:15.7412702+08:00</LastSyncDate>
+  </FilterCriteria>
+  <ActionCode>DirectCommit</ActionCode>
+  <SalesOrder>
+    <Version>QbwSwU</Version>
+    <CreatedDate>2014-11-28T15:17:15.7132664+08:00</CreatedDate>
+    <LastModifiedDate>2014-11-28T15:17:15.7132664+08:00</LastModifiedDate>
+    <IsGuestCustomer>false</IsGuestCustomer>
+    <AuthProvider>MSA</AuthProvider>
+    <AuthUserId>[[CUST}}</AuthUserId>
+    <SalesOrderId>ABCAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAA08</SalesOrderId>
+    <ExternalSalesOrderId>VpdjkK</ExternalSalesOrderId>
+    <Status>New</Status>
+    <ItemLines>
+      <ItemLine>
+        <Version>XqJTTL</Version>
+        <CreatedDate>2014-11-28T15:17:57.5273963+08:00</CreatedDate>
+        <LastModifiedDate>2014-11-28T15:17:57.5273963+08:00</LastModifiedDate>
+        <ExternalItemLineId>AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAB</ExternalItemLineId>
+        <Item>
+          <Version>V1</Version>
+          <CreatedDate>2014-11-28T15:17:57.5273963+08:00</CreatedDate>
+          <LastModifiedDate>2014-11-28T15:17:57.5273963+08:00</LastModifiedDate>
+          <ProductId>Air Conditioner01</ProductId>
+          <OfferId>Retail</OfferId>
+          <SupplierId>HaierAgent</SupplierId>
+          <CatalogId>yLLDWw</CatalogId>
+          <FSPId>FSPHttpConnectorV1-1</FSPId>
+          <ISPId>ISPHttpConnectorV1-1</ISPId>
+          <WarehouseId>Beijing Warehouse</WarehouseId>
+          <VariantId>China Hdwr</VariantId>
+          <ProductType>Physical</ProductType>
+          <ProductUnit>eOncEW</ProductUnit>
+          <CurrencyCode>RMB</CurrencyCode>
+          <MSRP>0</MSRP>
+          <OfferPrice>0</OfferPrice>
+          <Name>kzAfst</Name>
+          <Description>TyaPxF</Description>
+        </Item>
+        <Quantity>10</Quantity>
+        <ShippingCharge>0</ShippingCharge>
+        <TotalAmount>0</TotalAmount>
+        <TotalDiscountAmount>0</TotalDiscountAmount>
+        <Tax>
+          <Version>QSofMK</Version>
+          <CreatedDate>2014-11-28T15:17:57.5273963+08:00</CreatedDate>
+          <LastModifiedDate>2014-11-28T15:17:57.5273963+08:00</LastModifiedDate>
+          <IsTaxIncluded>false</IsTaxIncluded>
+          <TaxCode>Fpsnqb</TaxCode>
+          <TaxRate>0</TaxRate>
+          <TaxAmount>0</TaxAmount>
+        </Tax>
+        <Delivery>
+          <Version>cIlbKn</Version>
+          <CreatedDate>2014-11-28T15:17:57.5273963+08:00</CreatedDate>
+          <LastModifiedDate>2014-11-28T15:17:57.5273963+08:00</LastModifiedDate>
+          <DeliveryMethod>PJRQrq</DeliveryMethod>
+          <Addresses>
+            <Address>
+              <Version>V1</Version>
+              <CreatedDate>2014-11-28T15:23:11.3093997+08:00</CreatedDate>
+              <LastModifiedDate>2014-11-28T15:23:11.3093997+08:00</LastModifiedDate>
+              <AddressType>Shipping</AddressType>
+              <FirstName>first name</FirstName>
+              <LastName>LsUafA</LastName>
+              <Fullname>full name</Fullname>
+              <Country>China</Country>
+              <State>state test</State>
+              <City>Beijing</City>
+              <District>district</District>
+              <Street>street test</Street>
+              <PostalCode>JkFGdb</PostalCode>
+              <IsDefault>false</IsDefault>
+              <EmailAddress>email@email.com</EmailAddress>
+              <MobilePhone>1500000000</MobilePhone>
+              <LandLine>WHxIxk</LandLine>
+            </Address>
+          </Addresses>
+          <CustomerMemo>kDGdjc</CustomerMemo>
+          <EtaDate>2014-11-28T15:17:57.5273963+08:00</EtaDate>
+          <DeliveredDate>2014-11-28T15:17:57.5273963+08:00</DeliveredDate>
+          <Carrier>Dundpt</Carrier>
+          <TrackingNumber>VsHyAb</TrackingNumber>
+          <VirtualDeliveryData>XabBJt</VirtualDeliveryData>
+          <ShippingMemo>kprTag</ShippingMemo>
+        </Delivery>
+        <DeliveryStatus>None</DeliveryStatus>
+        <InventoryStatus d5p1:nil="true" xmlns:d5p1="http://www.w3.org/2001/XMLSchema-instance" />
+      </ItemLine>
+    </ItemLines>
+    <Tax>
+      <Version>aygtAu</Version>
+      <CreatedDate>2014-11-28T15:17:15.700264+08:00</CreatedDate>
+      <LastModifiedDate>2014-11-28T15:17:15.7132664+08:00</LastModifiedDate>
+      <IsTaxIncluded>false</IsTaxIncluded>
+      <TaxCode>yUbLin</TaxCode>
+      <TaxRate>0</TaxRate>
+      <TaxAmount>0</TaxAmount>
+    </Tax>
+    <CurrencyCode>None</CurrencyCode>
+    <ShippingCharge>0</ShippingCharge>
+    <TotalAmount>0</TotalAmount>
+    <TotalDiscountAmount>0</TotalDiscountAmount>
+    <Delivery>
+      <Version>EwDCrV</Version>
+      <CreatedDate>2014-11-28T15:17:15.7132664+08:00</CreatedDate>
+      <LastModifiedDate>2014-11-28T15:17:15.7132664+08:00</LastModifiedDate>
+      <DeliveryMethod>BPhBAT</DeliveryMethod>
+      <Addresses>
+        <Address>
+          <Version>V1</Version>
+          <CreatedDate>2014-11-28T15:23:11.3093997+08:00</CreatedDate>
+          <LastModifiedDate>2014-11-28T15:23:11.3093997+08:00</LastModifiedDate>
+          <AddressType>Shipping</AddressType>
+          <FirstName>first name</FirstName>
+          <LastName>LsUafA</LastName>
+          <Fullname>full name</Fullname>
+          <Country>China</Country>
+          <State>state test</State>
+          <City>Beijing</City>
+          <District>district</District>
+          <Street>street test</Street>
+          <PostalCode>JkFGdb</PostalCode>
+          <IsDefault>false</IsDefault>
+          <EmailAddress>email@email.com</EmailAddress>
+          <MobilePhone>1500000000</MobilePhone>
+          <LandLine>WHxIxk</LandLine>
+        </Address>
+      </Addresses>
+      <CustomerMemo>uKSdNE</CustomerMemo>
+      <EtaDate>2014-11-28T15:17:15.7132664+08:00</EtaDate>
+      <DeliveredDate>2014-11-28T15:17:15.7132664+08:00</DeliveredDate>
+      <Carrier>RyASRy</Carrier>
+      <TrackingNumber>DyACKx</TrackingNumber>
+      <VirtualDeliveryData>tbTnll</VirtualDeliveryData>
+      <ShippingMemo>BbbIiL</ShippingMemo>
+    </Delivery>
+    <Reason>WRtaza</Reason>
+  </SalesOrder>
+</SalesOrderRequestModel>
