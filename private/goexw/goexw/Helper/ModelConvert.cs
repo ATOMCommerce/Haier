@@ -49,6 +49,7 @@ namespace Goexw.Helper
         public static Order ConvertFromAtomOrder(AtomOrder input)
         {
             Order output = new Order();
+            output.AtomOrder = input;
             output.OrderId = input.SalesOrderId;
             var idList = input.ItemLines.Select(i => i.Version).ToList();
             var items = ProductItemLocator.FindItems(idList);
@@ -58,9 +59,11 @@ namespace Goexw.Helper
                 SalesLine line = new SalesLine();
                 line.Quantity = (int)sl.Quantity;
                 line.Isp = sl.Item.ISPId;
+                line.Item = new ProductItem();
+                line.Item.Name = sl.Item.ProductId;
+                line.Item.Price = sl.Item.OfferPrice;
                 line.Fsp = sl.Item.FSPId;
                 //@@TODO need use optional fields
-                line.Item = ProductItemLocator.FindItem(sl.Item.GetFrontId());
                 output.SalesLines.Add(line);
             }
 

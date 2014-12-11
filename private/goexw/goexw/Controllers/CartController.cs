@@ -22,11 +22,15 @@ namespace Goexw.Controllers
             var queryStream = Assembly.GetExecutingAssembly().GetManifestResourceStream("Goexw.Business.Content.Order.txt");
             var line = model.Lines[0];
             var price = line.Price;
+            var fspid = "FSPHttpConnectorV1-2";
+            var ispid = "ISPHttpConnectorV1-2";
 
-            var supplierId =  model.CustPrice ==0? "Midea" : "HaierAgent";
-            if(model.CustPrice != 0)
+            var supplierId = model.CustPrice == 0 ? "Midea" : "HaierAgent";
+            if (model.CustPrice != 0)
             {
-                price = Math.Round((model.CustPrice / line.Quantity),2);
+                price = Math.Round((model.CustPrice / line.Quantity), 2);
+                fspid = "FSPHttpConnectorV1-1";
+                ispid = "ISPHttpConnectorV1-1";
             }
 
             using (var reader = new StreamReader(queryStream))
@@ -37,11 +41,14 @@ namespace Goexw.Controllers
                     .Replace("[[SKU]]", line.Id)
                     .Replace("[[SUP]]", supplierId)
                     .Replace("[[PRICE]]", price.ToString())
-                    .Replace("[[QTY]]", line.Quantity.ToString());
-                AtomCommerceProxy.PostXmlData(SystemConfig.AtomComRoot, postXml);
+                    .Replace("[[QTY]]", line.Quantity.ToString())
+                    .Replace("[[ESOID]]", Guid.NewGuid().ToString())
+                    .Replace("[[FSP]]", fspid)
+                    .Replace("[[ISP]]", ispid);
+                var response = AtomCommerceProxy.PostXmlData(SystemConfig.AtomComRoot + "salesorder", postXml);
             }
 
-           
+
             return RedirectToAction("Index", "Order");
         }
         // GET: Cart

@@ -23,7 +23,7 @@
     <AuthProvider>MSA</AuthProvider>
     <AuthUserId>[[CUST]]</AuthUserId>
     <SalesOrderId>[[SOID]]</SalesOrderId>
-    <ExternalSalesOrderId>VpdjkK</ExternalSalesOrderId>
+    <ExternalSalesOrderId>[[ESOID]]</ExternalSalesOrderId>
     <Status>New</Status>
     <ItemLines>
       <ItemLine>
@@ -39,8 +39,8 @@
           <OfferId>Retail</OfferId>
           <SupplierId>[[SUP]]</SupplierId>
           <CatalogId>yLLDWw</CatalogId>
-          <FSPId>FSPHttpConnectorV1-2</FSPId>
-          <ISPId>ISPHttpConnectorV1-2</ISPId>
+          <FSPId>[[FSP]]</FSPId>
+          <ISPId>[[ISP]]</ISPId>
           <WarehouseId>Beijing Warehouse</WarehouseId>
           <VariantId>China Hdwr</VariantId>
           <ProductType>Physical</ProductType>
@@ -51,9 +51,9 @@
           <Name>kzAfst</Name>
           <Description>TyaPxF</Description>
         </Item>
-        <Quantity>10</Quantity>
+        <Quantity>[[QTY]]</Quantity>
         <ShippingCharge>0</ShippingCharge>
-        <TotalAmount>[[Qty]]</TotalAmount>
+        <TotalAmount>0</TotalAmount>
         <TotalDiscountAmount>0</TotalDiscountAmount>
         <Tax>
           <Version>QSofMK</Version>

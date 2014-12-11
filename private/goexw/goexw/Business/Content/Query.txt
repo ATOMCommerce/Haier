@@ -14,14 +14,14 @@
     <ToDate>2014-11-28T15:17:15.7412702+08:00</ToDate>
     <LastSyncDate>2014-11-28T15:17:15.7412702+08:00</LastSyncDate>
   </FilterCriteria>
-  <ActionCode>DirectCommit</ActionCode>
+  <ActionCode>QueryList</ActionCode>
   <SalesOrder>
     <Version>QbwSwU</Version>
     <CreatedDate>2014-11-28T15:17:15.7132664+08:00</CreatedDate>
     <LastModifiedDate>2014-11-28T15:17:15.7132664+08:00</LastModifiedDate>
     <IsGuestCustomer>false</IsGuestCustomer>
     <AuthProvider>MSA</AuthProvider>
-    <AuthUserId>[[CUST}}</AuthUserId>
+    <AuthUserId>[[CUST]]</AuthUserId>
     <SalesOrderId>ABCAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAA08</SalesOrderId>
     <ExternalSalesOrderId>VpdjkK</ExternalSalesOrderId>
     <Status>New</Status>
