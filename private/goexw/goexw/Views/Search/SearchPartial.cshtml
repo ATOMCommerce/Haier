@@ -13,26 +13,28 @@
         new { id = "searchform", @class = "form-inline col-md-12", role = "form" }))
     {
         <!-- Hidden select element used for submit "category" parameter-->
-        <select id="search-category" name="category" class="collapse">
-            @foreach (var pc in @Model.ProductCategories)
-            {
-                <option value="@pc.id" 
-                    @(pc.id == @Model.UserInput.Category ? "selected" : "")>
-                    @pc.id - @pc.text
-                </option>
-                if (pc.children == null)
+        @*<select id="search-category" name="category" class="collapse">
+                @foreach (var pc in @Model.ProductCategories)
                 {
-                    continue;
-                }
-                foreach (var child in pc.children)
-                {
-                    <option value="@child.id" 
-                            @(child.id == @Model.UserInput.Category ? "selected" : "")>
-                        @child.id - @child.text
+                    <option value="@pc.id"
+                        @(pc.id == @Model.UserInput.Category ? "selected" : "")>
+                        @pc.id - @pc.text
                     </option>
+                    if (pc.children == null)
+                    {
+                        continue;
+                    }
+                    foreach (var child in pc.children)
+                    {
+                        <option value="@child.id"
+                                @(child.id == @Model.UserInput.Category ? "selected" : "")>
+                            @child.id - @child.text
+                        </option>
+                    }
                 }
-            }
-        </select>
+            </select>*@
+        
+        @Html.HiddenFor( m => m.Category)
 
         <div class="form-group col-md-6">
             <div class="input-group col-md-12">
@@ -42,69 +44,57 @@
                             data-toggle="dropdown"
                             id="search-category-btn"
                             aria-expanded="false">
-                        @foreach (var pc in @Model.ProductCategories)
-                        {
-                            if (pc.id == @Model.UserInput.Category)
-                            {
-                                <span>@pc.text</span>
-                                break;
-                            }
-                            if (pc.children == null)
-                            {
-                                continue;
-                            }
-                            var child = pc.children.FirstOrDefault(c => c.id == @Model.UserInput.Category);
-                            if (child == null)
-                            {
-                                continue;
-                            }
-
-                            <span>@child.text</span>
-                            break;
-                        }
+                        <span>@Model.Categories.First(i => i.Id == @Model.Category).Name</span>
                         <span class="caret"></span>
                     </button>
                     <ul id="categoryList" class="dropdown-menu" role="menu">
-                        @foreach (var pc in @Model.ProductCategories)
+                        @foreach (var c in @Model.Categories)
                         {
-                            <li value="@pc.id"><a href="#">@pc.text</a></li>
-                            if (pc.children == null)
-                            {
-                                continue;
-                            }
-                            foreach (var child in pc.children)
-                            {
-                                <li value="@child.id"><a href="#"><span> -- </span>@child.text</a></li>
-                            }
+                            <li value="@c.Id">
+                                <a href="#">
+                                    @if (c.IsSubItem)
+                                    {
+                                        <span> -- </span>
+                                    }
+                                    @c.Name
+                                </a>
+                            </li>
                         }
                     </ul>
                 </div>
-                <input type="text" 
-                       name="keyword" 
-                       class="form-control" 
-                       placeholder="products keyword" 
-                       value="@Model.UserInput.Keyword"/>
+                
+                @Html.TextBoxFor( m => m.Keyword , new
+                {
+                    @class = "form-control",
+                    placeholder = "product keyword",
+                    
+                })
             </div>
         </div>
         <div class="form-group">
             <div class="input-group">
                 <div class="input-group-addon">Price: </div>
-                <input type="number" name="price" class="form-control text-right" value="@Model.UserInput.Price" />
+                
+                @Html.TextBoxFor( m => m.Price , new
+                {
+                    @class = "form-control text-right"
+                })
+
                 <div class="input-group-addon">$</div>
             </div>
         </div>
         <div class="form-group">
             <div class="input-group">
                 <div class="input-group-addon">Shipping: </div>
-                <select name="shipmethod" class="form-control">
-                    @foreach (var c in @Model.ShipMethods)
+
+                @Html.DropDownListFor( 
+                    m => m.Shipmethod , 
+                    Model.ShipMethods , 
+                    new
                     {
-                        <option value="@c.Code"
-                                @(c.Code == @Model.UserInput.Shipmethod ? "selected" : "")>
-                            @c.Name
-                            </option>
-                    }
-                </select>
+                        @class = "form-control"
+                    })
+
             </div>
         </div>
         <div class="form-group">

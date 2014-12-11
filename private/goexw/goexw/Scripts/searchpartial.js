@@ -3,7 +3,7 @@
     var value = li.val();
 
     //set hidden form element so that this value can submit automatically
-    var categoryElement = $("#searchform select[name='category']");
+    var categoryElement = $("#searchform input[name='Category']");
     categoryElement.val(value);
 
     //update UI to select element
