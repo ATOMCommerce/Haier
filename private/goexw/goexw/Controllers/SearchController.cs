@@ -26,47 +26,16 @@ namespace Goexw.Controllers
         }
         public ActionResult Index(int? category, String keyword, int? price, int? shipmethod, int? page)
         {
-            //MockDataProvider.GetCatalogReponse();
-            var responseBody = String.Empty;
+            var list = QueryCatalogReportViewModel.QueryCatalogByKeyword(keyword);
 
-
-            var request = (HttpWebRequest)WebRequest.Create("http://msstorebuddy.chinacloudapp.cn/api/v1/catalog");
-            request.Method = "POST";
-            request.ContentType = "application/json";
-
-            var bodyString = JsonConvert.SerializeObject(new
-            {
-                ActionCode = "QueryByKeyword",
-                ChannelId = "Haier",
-                SupplierId = "Gree",
-                SearchCategory = "",
-                SearchKeyword = keyword
-            });
-            var encoded = Encoding.UTF8.GetBytes(bodyString);
-
-            var body = request.GetRequestStream();
-            body.Write(encoded, 0, encoded.Length);
-            body.Close();
-
-            var response = request.GetResponse();
-            var dataStream = response.GetResponseStream();
-            using (var reader = new StreamReader(dataStream, Encoding.UTF8))
-            {
-                responseBody = reader.ReadToEnd();
-            }
-
-            var data = JsonConvert.DeserializeObject<CatalogResponseModel>(responseBody);
-
-            var list = data.CatalogItems.ToList();
             int pageNo = page.GetValueOrDefault(1);
-
-
             var offset = (pageNo - 1)*QueryCatalogReportViewModel.ItemCountPerPage;
+
             var vm = new QueryCatalogReportViewModel
             {
                 CatalogItems = list.GetRange(
                     offset,
-                    Math.Min( offset + QueryCatalogReportViewModel.ItemCountPerPage , list.Count) ),
+                    Math.Min( QueryCatalogReportViewModel.ItemCountPerPage , list.Count - offset) ),
                 Page = pageNo,
                 HasMoreItem = pageNo * QueryCatalogReportViewModel.ItemCountPerPage < list.Count,
                 Parameters = new QueryCatalogFormViewModel
