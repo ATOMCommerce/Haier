@@ -38,6 +38,18 @@ namespace Goexw.Business.Managers
             return AtomCommerceProxy.ProcessSalesOrderRequest(requestModel);
         }
 
+        public SalesOrderResponseModel DirectCommitOrder(Order order, IPrincipal user)
+        {
+            if (user == null)
+            {
+                throw new ArgumentNullException("user");
+            }
+
+            var requestModel = BuildSalesOrderRequestModel(null, user);
+            requestModel.ActionCode = MsStore.Mfl.Core.Enumeration.SalesOrderAction.DirectCommit;
+            return AtomCommerceProxy.ProcessSalesOrderRequest(requestModel);
+        }
+
         public SalesOrderResponseModel OrderHistory(IPrincipal user)
         {
             if (user == null)

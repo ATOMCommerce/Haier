@@ -1,14 +1,4 @@
 ﻿<style>
-    html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
-        margin: 0;
-        padding: 0;
-        border: 0;
-        outline: 0;
-        font-size: 100%;
-        vertical-align: baseline;
-        background: transparent;
-    }
-
     :focus {
         outline: 0;
     }
@@ -111,6 +101,26 @@
     }
 </style>
 
+<script type="text/javascript">
+    function shoppingCartCheckOut() {
+        debugger;
+        var custPrice = $('#custPrice').val();
+        var cartModel = {};
+        cartModel.CustPrice = custPrice;
+        cartModel.Lines = new Array();
+        for (var i in simpleCart.items) {
+            var item = simpleCart.items[i];
+            var line = {};
+            line.Id = item.sku;
+            line.Quantity = item.quantity;
+            cartModel.Lines.push(line);
+        }
+
+        $('commmitOrder').val(JSON.stringify(cartModel));
+        $("#postForm").submit();
+    }
+</script>
+
 <div id="content">
     <div id="left">
         <div>
@@ -138,10 +148,24 @@
         </div>
         <div style="clear:both;"></div>
     </div>
+    <div style="margin-bottom: 15px; margin-left: 20px; vertical-align:middle;">
+        <!--Here's the Links to Checkout and Empty Cart-->
+        <span style="text-align: right; vertical-align: middle;">My Price</span>
+        <span><input id="custPrice" style="float: right;" type="text" value="0"></span>
+        <div style="clear:both"></div>
+    </div>
     <div>
         <!--Here's the Links to Checkout and Empty Cart-->
         <a class="simpleCart_empty" style="margin-left: 20px;" href="#">Empty Cart</a>
-        <a style="float:right; margin-right: 40px;" href="#" onclick="shoppingCartCheckOut()">Checkout</a>
+        <a style="float:right; margin-right: 40px;" href="#" onclick="shoppingCartCheckOut();">Checkout</a>
     </div>
     <div style="margin-top: 10px; border-bottom: 2px solid black; text-align: center; padding-bottom: -5px;"><a style="width:100%; text-align:center; font-size: 16px; color: #000;" href="#" onclick="$('#cartPartial').hide(); return false;">^</a></div>
+</div>
+
+<div style="display:none">
+    @Html.BeginForm("View", "Cart", FormMethod.Post, new { id = "postForm" })
+    {
+    @Html.Hidden("commmitOrder", "")
+    <input type="submit" value="submit" />
+    }
 </div>

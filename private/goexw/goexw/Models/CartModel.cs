@@ -11,6 +11,8 @@ namespace Goexw.Models
 
         public List<CartLineModel> Lines { get; set; }
 
+        public decimal CustPrice { get; set; }
+
         public decimal TotalPrice { get; set; }
     }
 

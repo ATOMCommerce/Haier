@@ -325,7 +325,7 @@
     <Content Include="Views\Product\Detail.cshtml" />
     <Content Include="Views\Search\SearchPartial.cshtml" />
     <Content Include="Views\Cart\View.cshtml" />
-    <Content Include="Views\Order\View.cshtml" />
+    <Content Include="Views\Order\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

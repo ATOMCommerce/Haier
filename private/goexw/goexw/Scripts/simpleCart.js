@@ -1000,7 +1000,3 @@ function showCartPanel()
     cartPanel.css({ "position": "absolute", "right": "16px", "top":  "50px" });
 }
 
-function shoppingCartCheckOut()
-{
-    return false;
-}

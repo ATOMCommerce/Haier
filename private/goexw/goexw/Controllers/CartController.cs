@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Goexw.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +9,11 @@ namespace Goexw.Controllers
 {
     public class CartController : Controller
     {
+        [HttpPost]
+        public ActionResult View(CartModel model)
+        {
+            return RedirectToAction("Index", "Order");
+        }
         // GET: Cart
         public ActionResult Index()
         {
