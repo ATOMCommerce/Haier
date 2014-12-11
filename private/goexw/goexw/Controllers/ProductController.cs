@@ -16,13 +16,16 @@ namespace Goexw.Controllers
             var catalogs = QueryCatalogReportViewModel.QueryCatalogByKeyword(keyword);
             var catalog = catalogs.FirstOrDefault(i => i.Sku == id);
 
+            
+
             ProductDetailViewModel vm;
             if (catalog == null)
             {
                 vm = new ProductDetailViewModel
                 {
-                    Sku = "<sku:No such product>",
-                    UnitPrice = 9999999
+                    Sku = "<sku:NA>",
+                    UnitPrice = 9999999,
+                    Name = "<Name - NA>"
                 };
             }
             else
@@ -30,7 +33,8 @@ namespace Goexw.Controllers
                 vm = new ProductDetailViewModel
                 {
                     Sku = id,
-                    UnitPrice = catalog.UnitPrice
+                    UnitPrice = catalog.UnitPrice, 
+                    Name = catalog.Name
                 };
             }
             

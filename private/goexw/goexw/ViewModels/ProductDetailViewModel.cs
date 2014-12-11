@@ -10,5 +10,7 @@ namespace Goexw.ViewModels
         public String Sku { get; set; }
 
         public double UnitPrice { get; set; }
+
+        public string Name { get; set; }
     }
 }
