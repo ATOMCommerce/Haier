@@ -53,13 +53,14 @@
 
         @foreach (var item in @Model.CatalogItems)
         {
+            <div class="row" style="min-height: 2px; background: darkseagreen"></div>
+
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-2">
                     <img src="~/Resources/images/mp1.jpg" class="img-thumbnail" />
                 </div>
 
-                <div class="col-md-9" style="background: aquamarine;">
-                    Detail Information:
+                <div class="col-md-3">
                     <a href="@Url.Action("Detail", "Product",new
                              {
                                  id = @item.Sku,
@@ -68,17 +69,27 @@
                                  price = @Model.Parameters.Price,
                                  shipmethod = @Model.Parameters.Shipmethod
                              })">
-                        <h5>Sku: @item.Sku</h5>
+                        <h4>Sku: @item.Sku</h4>
                     </a>
+                </div>
+                
+                <div class="col-md-3">
+                    <div>
+                        <h4>UnitPrice:</h4>@item.UnitPrice
+                    </div>
 
                     <div>
-                        <span>UnitPrice: @item.UnitPrice</span>
-                        <span>SupplierId: @item.SupplierId</span>
+                        <h4>SupplierId:</h4>@item.SupplierId
                     </div>
+
+                    @*<div>
+                <span>UnitPrice: @item.UnitPrice</span>
+                <span>SupplierId: @item.SupplierId</span>
+            </div>*@
                 </div>
             </div>
 
-            <div class="row" style="min-height: 10px"></div>
+            
         }
     </div>
 </div>
