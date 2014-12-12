@@ -1,6 +1,10 @@
 ﻿using Goexw.Config;
 using Goexw.Helper;
 using Goexw.Models;
+using MsStore.Mfl.Core.Models;
+using MsStore.Mfl.Core.Models.Request;
+using MsStore.Mfl.Core.Models.Response;
+using MsStore.Mfl.Core.Utilities;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -45,11 +49,36 @@ namespace Goexw.Controllers
                     .Replace("[[ESOID]]", Guid.NewGuid().ToString())
                     .Replace("[[FSP]]", fspid)
                     .Replace("[[ISP]]", ispid);
+                var requestModel = XmlUtility.Deserialize<SalesOrderRequestModel>(postXml);
+                var item = requestModel.SalesOrder.ItemLines[0];
+                for (int i = 1; i < model.Lines.Count; i++)
+                {
+                    var frontLine = model.Lines[i];
+                    ItemLine newLine = XmlUtility.Deserialize<ItemLine>(XmlUtility.Serialize<ItemLine>(item));
+                    newLine.Item.ProductId = frontLine.Id;
+                    newLine.Quantity = frontLine.Quantity;
+                    newLine.Item.OfferPrice = frontLine.Price;
+                    requestModel.SalesOrder.ItemLines.Add(newLine);
+                }
+
+                postXml = XmlUtility.Serialize<SalesOrderRequestModel>(requestModel);
                 var response = AtomCommerceProxy.PostXmlData(SystemConfig.AtomComRoot + "salesorder", postXml);
+                var responseModel = XmlUtility.Deserialize<SalesOrderResponseModel>(response);
+                if (!responseModel.HasError)
+                {
+                    return RedirectToAction("Index", "Order");
+                }
+                else
+                {
+                    return RedirectToAction("Error", new { ex = responseModel.ErrorCode });
+                }
             }
+        }
 
-
-            return RedirectToAction("Index", "Order");
+        public ActionResult Error()
+        {
+            var x = RouteData.Values["ex"];
+            return View(x);
         }
         // GET: Cart
         public ActionResult Index()

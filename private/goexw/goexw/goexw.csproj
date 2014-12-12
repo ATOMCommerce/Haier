@@ -273,6 +273,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
+    <None Include="Properties\PublishProfiles\goexw.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -333,6 +334,7 @@
     <Content Include="Views\Search\SearchPartial.cshtml" />
     <Content Include="Views\Cart\View.cshtml" />
     <Content Include="Views\Order\Index.cshtml" />
+    <Content Include="Views\Cart\Error.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
