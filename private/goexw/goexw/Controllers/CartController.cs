@@ -40,7 +40,7 @@ namespace Goexw.Controllers
             using (var reader = new StreamReader(queryStream))
             {
                 var xmlTemplate = reader.ReadToEnd();
-                var postXml = xmlTemplate.Replace("[[CUST]]", model.CustomerID)
+                var postXml = xmlTemplate.Replace("[[CUST]]", SystemConfig.DefaultCust)
                     .Replace("[[SOID]]", Guid.NewGuid().ToString())
                     .Replace("[[SKU]]", line.Id)
                     .Replace("[[SUP]]", supplierId)

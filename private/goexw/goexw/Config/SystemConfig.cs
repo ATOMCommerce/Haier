@@ -33,5 +33,19 @@ namespace Goexw.Config
                 return "BZ";
             }
         }
+
+        public static string DefaultCust
+        {
+            get
+            {
+                string name = ConfigurationManager.AppSettings["Customer"];
+                if (string.IsNullOrEmpty(name))
+                {
+                    name = "MSAAuthUserID";
+                }
+
+                return name;
+            }
+        }
     }
 }

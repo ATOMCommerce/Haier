@@ -24,7 +24,7 @@ namespace Goexw.Controllers
             using (var reader = new StreamReader(queryStream))
             {
                 var xmlTemplate = reader.ReadToEnd();
-                var postXml = xmlTemplate.Replace("[[CUST]]", model.CustomerID);
+                var postXml = xmlTemplate.Replace("[[CUST]]", SystemConfig.DefaultCust);
                 var response = AtomCommerceProxy.PostXmlData(SystemConfig.AtomComRoot + "salesorder", postXml);
                 var responseModel = XmlUtility.Deserialize<SalesOrderResponseModel>(response);
                 foreach (var so in responseModel.SalesOrders)
