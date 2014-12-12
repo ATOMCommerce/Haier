@@ -58,6 +58,7 @@ namespace Goexw.Controllers
                     newLine.Item.ProductId = frontLine.Id;
                     newLine.Quantity = frontLine.Quantity;
                     newLine.Item.OfferPrice = frontLine.Price;
+                    newLine.TotalAmount = model.CustPrice == 0 ? line.Price * line.Quantity : model.CustPrice;
                     requestModel.SalesOrder.ItemLines.Add(newLine);
                 }
 

@@ -46,12 +46,11 @@
                     <tr>
                         <td>
                             <div class="itemheader">
-                                <div class="itemimg">Image</div>
+                                <div class="itemimg">@order.AtomOrder.SalesOrderId</div>
                                 <div class="item">Name</div>
-                                <div class="itemprice">Price</div>
+                                <div class="itemprice">Unit Price</div>
                                 <div class="itemqty">Quantity</div>
                                 <div class="operation">@order.AtomOrder.Status</div>
-                                <div class="operation">Operation</div>
                                 <div style="clear:both; display:none;"></div>
                             </div>
                         </td>
@@ -67,7 +66,6 @@
                                     <div class="item">@line.Item.Name</div>
                                     <div class="itemprice">@line.Item.Price</div>
                                     <div class="itemqty">@line.Quantity</div>
-                                    <div class="operation"></div>
                                     <div style="clear:both; display:none;"></div>
                                 </div>
                             </td>
@@ -141,7 +139,7 @@
     }
 
     .itemimg {
-        width: 200px;
+        width: 300px;
     }
 
         .itemimg > image {
@@ -150,7 +148,7 @@
         }
 
     .itemprice {
-        width: 200px;
+        width: 150px;
     }
 
     .item {
