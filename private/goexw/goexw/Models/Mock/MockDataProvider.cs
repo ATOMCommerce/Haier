@@ -19,11 +19,11 @@ namespace Goexw.Models
             mockData.Add(new MockPromotion { Id = 4, Name = "Mobile Phones", Descritpion = "Beautiful house in sale", ImageUrl = "/Content/mockimgs/mp4.jpg" });
             mockData.Add(new MockPromotion { Id = 5, Name = "Child Food", Descritpion = "Beautiful house in sale", ImageUrl = "/Content/mockimgs/mp5.jpg" });
 
-            mockData.Add(new MockPromotion { Id = 6, Name = "House in sale", Descritpion = "Beautiful house in sale", ImageUrl = "/Content/mockimgs/mp1.jpg" });
-            mockData.Add(new MockPromotion { Id = 7, Name = "Scroller", Descritpion = "Beautiful house in sale", ImageUrl = "/Content/mockimgs/mp2.jpg" });
-            mockData.Add(new MockPromotion { Id = 8, Name = "Ball in sale", Descritpion = "Beautiful house in sale", ImageUrl = "/Content/mockimgs/mp3.jpg" });
-            mockData.Add(new MockPromotion { Id = 9, Name = "Mobile Phones", Descritpion = "Beautiful house in sale", ImageUrl = "/Content/mockimgs/mp4.jpg" });
-            mockData.Add(new MockPromotion { Id = 10, Name = "Child Food", Descritpion = "Beautiful house in sale", ImageUrl = "/Content/mockimgs/mp5.jpg" });
+            mockData.Add(new MockPromotion { Id = 6, Name = "House in sale", Descritpion = "Beautiful house in sale", ImageUrl = "/Content/mockimgs/mp6.jpg" });
+            mockData.Add(new MockPromotion { Id = 7, Name = "Scroller", Descritpion = "Beautiful house in sale", ImageUrl = "/Content/mockimgs/mp7.jpg" });
+            mockData.Add(new MockPromotion { Id = 8, Name = "Ball in sale", Descritpion = "Beautiful house in sale", ImageUrl = "/Content/mockimgs/mp8.jpg" });
+            mockData.Add(new MockPromotion { Id = 9, Name = "Mobile Phones", Descritpion = "Beautiful house in sale", ImageUrl = "/Content/mockimgs/mp9.jpg" });
+            mockData.Add(new MockPromotion { Id = 10, Name = "Child Food", Descritpion = "Beautiful house in sale", ImageUrl = "/Content/mockimgs/mp10.jpg" });
 
             return mockData;
         }
