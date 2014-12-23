@@ -46,8 +46,8 @@
                     <tr>
                         <td>
                             <div class="itemheader">
-                                <div class="itemimg">@order.AtomOrder.SalesOrderId</div>
-                                <div class="item">Name</div>
+                                <div class="itemimg">@Html.ActionLink(order.AtomOrder.SalesOrderId, "Details", "Order", new { id = order.AtomOrder.SalesOrderId }, null)</div>
+                                <div class="item">@order.AtomOrder.TotalAmount</div>
                                 <div class="itemprice">Unit Price</div>
                                 <div class="itemqty">Quantity</div>
                                 <div class="operation">@order.AtomOrder.Status</div>
@@ -55,22 +55,60 @@
                             </div>
                         </td>
                     </tr>
-                    foreach (var line in order.SalesLines)
+                
+                    if (order.AtomOrder.FulfillmentOrders.Count > 0) { 
+                    foreach (var fo in order.AtomOrder.FulfillmentOrders)
                     {
                         <tr>
                             <td>
-                                <div class="itemline">
-                                    <div class="itemimg">
-                                        <img src="@line.Item.Image" />
-                                    </div>
-                                    <div class="item">@line.Item.Name</div>
-                                    <div class="itemprice">@line.Item.Price</div>
-                                    <div class="itemqty">@line.Quantity</div>
+                                <div class="foHeader">
+                                    <div class="itemimg">@fo.FulfillmentOrderId</div>
+                                    <div class="item">@fo.Status</div>
+                                    <div class="itemprice">@fo.CreatedDate</div>
+                                    <div class="itemqty">@fo.MiscCharge</div>
                                     <div style="clear:both; display:none;"></div>
                                 </div>
                             </td>
                         </tr>
+
+                        foreach (var line in fo.ItemLines)
+                        {
+                            <tr>
+                                <td>
+                                    <div class="itemline">
+                                        <div class="itemimg">
+                                            <img src="@line.Item.ISPId" />
+                                        </div>
+                                        <div class="item">@line.Item.Name</div>
+                                        <div class="itemprice">@line.Item.OfferPrice</div>
+                                        <div class="itemqty">@line.Quantity</div>
+                                        <div style="clear:both; display:none;"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
                     }
+                    }
+                    else
+                    {
+                        foreach (var line in order.SalesLines)
+                        {
+                            <tr>
+                                <td>
+                                    <div class="itemline">
+                                        <div class="itemimg">
+                                            <img src="@line.Item.Image" />
+                                        </div>
+                                        <div class="item">@line.Item.Name</div>
+                                        <div class="itemprice">@line.Item.Price</div>
+                                        <div class="itemqty">@line.Quantity</div>
+                                        <div style="clear:both; display:none;"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    }
+
                     <tr><td><div style="height: 4px;"></div></td></tr>
 
                 }
@@ -101,10 +139,27 @@
         height: 30px;
         color: #3e6b99;
         border-bottom: 1px solid #e5e5e5;
-        background-color: rgb(216, 237, 247);
+        background-color : rgb(216, 237, 247);
     }
 
         .itemheader > * {
+            height: 30px;
+            color: #3e6b99;
+            line-height: 30px;
+            vertical-align: middle;
+            text-align: center;
+            border-right: 1px solid #e5e5e5;
+            float: left;
+        }
+
+    .foHeader {
+        height: 30px;
+        color: #3e6b99;
+        border-bottom: 1px solid #e5e5e5;
+        background-color: azure;
+    }
+
+        .foHeader > * {
             height: 30px;
             color: #3e6b99;
             line-height: 30px;

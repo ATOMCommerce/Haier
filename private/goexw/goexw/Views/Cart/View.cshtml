@@ -6,13 +6,13 @@
     .simpleCart_items {
         float: left;
         clear: left;
-        width: 446px;
+        width: 573px;
         margin: 20px;
     }
 
     #content {
         background: url(images/bg_content.png);
-        width: 440px;
+        width: 573px;
         margin: 10px auto 5px auto;
     }
 
@@ -27,7 +27,7 @@
 
     .itemContainer {
         clear: both;
-        width: 543px;
+        width: 573px;
         padding: 15px 0;
         font-size: 11px;
         line-height: 25px;
@@ -83,7 +83,7 @@
     }
 
     .itemQuantity input {
-        width: 20px;
+        width: 40px;
         height: 20px;
         border: 1px solid #ccc;
         margin: 0 auto;
@@ -91,6 +91,24 @@
         font-size: 11px;
         line-height: normal;
     }
+
+    .itemCustomPrice {
+        margin-left: 30px;
+        float: left;
+        width: 105px;
+        vertical-align: middle;
+        text-align: center;
+    }
+
+        .itemCustomPrice input {
+            width: 60px;
+            height: 20px;
+            border: 1px solid #ccc;
+            margin: 0 auto;
+            display: block;
+            font-size: 11px;
+            line-height: normal;
+        }
 
     .itemImage img {
         vertical-align: middle;
@@ -103,16 +121,16 @@
 
 <script type="text/javascript">
     function shoppingCartCheckOut() {
-        var custPrice = $('#custPrice').val();
         var cartModel = {};
-        cartModel.CustPrice = custPrice;
         cartModel.Lines = new Array();
         for (var i in simpleCart.items) {
             var item = simpleCart.items[i];
             var line = {};
             line.Id = item.sku;
-            line.Price = item.price;
+            line.UnitPrice = item.price;
+            line.CustomPrice = item.customprice;
             line.Quantity = item.quantity;
+            line.SaleType = item.saletype
             cartModel.Lines.push(line);
         }
 
@@ -149,12 +167,11 @@
         </div>
         <div style="clear:both;"></div>
     </div>
-    <div style="margin-bottom: 15px; margin-left: 20px; vertical-align:middle;">
-        <!--Here's the Links to Checkout and Empty Cart-->
+    @*<div style="margin-bottom: 15px; margin-left: 20px; vertical-align:middle;">
         <span style="text-align: right; vertical-align: middle;">My Price</span>
         <span><input id="custPrice" style="float: right;" type="text" value="0"></span>
         <div style="clear:both"></div>
-    </div>
+    </div>*@
     <div>
         <!--Here's the Links to Checkout and Empty Cart-->
         <a class="simpleCart_empty" style="margin-left: 20px;" href="#">Empty Cart</a>

@@ -2,6 +2,7 @@
 using Goexw.Config;
 using Goexw.Helper;
 using Goexw.Models;
+using MsStore.Mfl.Core.Models.Request;
 using MsStore.Mfl.Core.Models.Response;
 using MsStore.Mfl.Core.Utilities;
 using System;
@@ -33,6 +34,35 @@ namespace Goexw.Controllers
                 }
             }
             return View(orders);
+        }
+
+        public ActionResult Details(string id)
+        {
+            var orders = new List<Order>();
+            if (string.IsNullOrEmpty(id))
+            {
+                id = Convert.ToString(this.RouteData.Values["id"]);
+            }
+            var queryStream = Assembly.GetExecutingAssembly().GetManifestResourceStream("Goexw.Business.Content.Query.txt");
+            using (var reader = new StreamReader(queryStream))
+            {
+                var xmlTemplate = reader.ReadToEnd();
+                var requestModel = XmlUtility.Deserialize<SalesOrderRequestModel>(xmlTemplate);
+                requestModel.SalesOrder.AuthUserId = SystemConfig.DefaultCust;
+                requestModel.ActionCode = MsStore.Mfl.Core.Enumeration.SalesOrderAction.QueryDetail;
+                requestModel.SalesOrder.SalesOrderId = id;
+                var postXml = XmlUtility.Serialize<SalesOrderRequestModel>(requestModel);
+                var response = AtomCommerceProxy.PostXmlData(SystemConfig.AtomComRoot + "salesorder", postXml);
+                var responseModel = XmlUtility.Deserialize<SalesOrderResponseModel>(response);
+                if (!responseModel.HasError)
+                {
+                    foreach (var so in responseModel.SalesOrders)
+                    {
+                        orders.Add(ModelConvert.ConvertFromAtomOrder(so));
+                    }
+                }
+            }
+            return View(orders.FirstOrDefault());
         }
 
         public ActionResult AllOrders()

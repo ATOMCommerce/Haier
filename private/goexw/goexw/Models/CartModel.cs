@@ -24,7 +24,11 @@ namespace Goexw.Models
 
         public string Image { get; set; }
 
-        public decimal Price { get; set; }
+        public decimal UnitPrice { get; set; }
+
+        public decimal CustomPrice { get; set; }
+
+        public string SaleType { get; set; }
 
         public int Quantity { get; set; }
     }

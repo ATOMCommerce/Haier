@@ -23,57 +23,19 @@ namespace Goexw.Controllers
         {
             var jsonStr = Request.Form["commitOrder"];
             var model = JsonConvert.DeserializeObject<CartModel>(jsonStr);
-            var queryStream = Assembly.GetExecutingAssembly().GetManifestResourceStream("Goexw.Business.Content.Order.txt");
-            var line = model.Lines[0];
-            var price = line.Price;
-            var fspid = "FSPHttpConnectorV1-2";
-            var ispid = "ISPHttpConnectorV1-2";
-
-            var supplierId = model.CustPrice == 0 ? "Midea" : "HaierAgent";
-            if (model.CustPrice != 0)
+            var requestModelList = BuildSalesOrderRequestList(model);
+            foreach (var requestModel in requestModelList)
             {
-                price = Math.Round((model.CustPrice / line.Quantity), 2);
-                fspid = "FSPHttpConnectorV1-1";
-                ispid = "ISPHttpConnectorV1-1";
-            }
-
-            using (var reader = new StreamReader(queryStream))
-            {
-                var xmlTemplate = reader.ReadToEnd();
-                var postXml = xmlTemplate.Replace("[[CUST]]", SystemConfig.DefaultCust)
-                    .Replace("[[SOID]]", Guid.NewGuid().ToString())
-                    .Replace("[[SKU]]", line.Id)
-                    .Replace("[[SUP]]", supplierId)
-                    .Replace("[[PRICE]]", price.ToString())
-                    .Replace("[[QTY]]", line.Quantity.ToString())
-                    .Replace("[[ESOID]]", Guid.NewGuid().ToString())
-                    .Replace("[[FSP]]", fspid)
-                    .Replace("[[ISP]]", ispid);
-                var requestModel = XmlUtility.Deserialize<SalesOrderRequestModel>(postXml);
-                var item = requestModel.SalesOrder.ItemLines[0];
-                for (int i = 1; i < model.Lines.Count; i++)
-                {
-                    var frontLine = model.Lines[i];
-                    ItemLine newLine = XmlUtility.Deserialize<ItemLine>(XmlUtility.Serialize<ItemLine>(item));
-                    newLine.Item.ProductId = frontLine.Id;
-                    newLine.Quantity = frontLine.Quantity;
-                    newLine.Item.OfferPrice = frontLine.Price;
-                    newLine.TotalAmount = model.CustPrice == 0 ? line.Price * line.Quantity : model.CustPrice;
-                    requestModel.SalesOrder.ItemLines.Add(newLine);
-                }
-
-                postXml = XmlUtility.Serialize<SalesOrderRequestModel>(requestModel);
+                var postXml = XmlUtility.Serialize<SalesOrderRequestModel>(requestModel);
                 var response = AtomCommerceProxy.PostXmlData(SystemConfig.AtomComRoot + "salesorder", postXml);
                 var responseModel = XmlUtility.Deserialize<SalesOrderResponseModel>(response);
-                if (!responseModel.HasError)
-                {
-                    return RedirectToAction("Index", "Order");
-                }
-                else
+                if (responseModel.HasError)
                 {
                     return RedirectToAction("Error", new { ex = responseModel.ErrorCode });
                 }
             }
+
+            return RedirectToAction("Index", "Order");
         }
 
         public ActionResult Error()
@@ -157,6 +119,84 @@ namespace Goexw.Controllers
             {
                 return View();
             }
+        }
+
+        private List<SalesOrderRequestModel> BuildSalesOrderRequestList(CartModel cart)
+        {
+            var normalLines = cart.Lines.Where(i => i.SaleType == "Sample").ToList();
+            var custLines = cart.Lines.Where(i => i.SaleType != "Sample").ToList();
+
+            var orderRequestList = new List<SalesOrderRequestModel>();
+            if (normalLines.Count > 0)
+            {
+                orderRequestList.Add(BuildOrderRequestModel(normalLines));
+            }
+
+            foreach (var line in custLines)
+            {
+                var lineModel = new List<CartLineModel>() { line };
+                orderRequestList.Add(BuildOrderRequestModel(lineModel));
+            }
+
+            return orderRequestList;
+        }
+
+        private SalesOrderRequestModel BuildOrderRequestModel(List<CartLineModel> lineModels)
+        {
+            var salesOrderRequest = LoadRequestModel();
+            var lineTemplate = salesOrderRequest.SalesOrder.ItemLines[0];
+            salesOrderRequest.SalesOrder.ItemLines.Clear();
+            salesOrderRequest.SalesOrder.AuthUserId = SystemConfig.DefaultCust;
+            salesOrderRequest.SalesOrder.SalesOrderId = Guid.NewGuid().ToString();
+            salesOrderRequest.SalesOrder.ExternalSalesOrderId = Guid.NewGuid().ToString();
+
+            foreach (var line in lineModels)
+            {
+                ItemLine newLine = XmlUtility.Deserialize<ItemLine>(XmlUtility.Serialize<ItemLine>(lineTemplate));
+                newLine.ExternalItemLineId = Guid.NewGuid().ToString();
+                newLine.Item.ProductId = line.Id;
+                newLine.Quantity = line.Quantity;
+                var totalPrice = line.Quantity * line.UnitPrice;
+                newLine.TotalAmount = line.SaleType == "WholeSale" ? line.CustomPrice : totalPrice;
+                newLine.Item.SupplierId = GetSupplierId(line.SaleType);
+                newLine.Item.FSPId = GetFSPId(line.SaleType);
+                newLine.Item.ISPId = GetISPId(line.SaleType);
+                newLine.Item.OfferPrice = line.UnitPrice;
+                salesOrderRequest.SalesOrder.ItemLines.Add(newLine);
+            }
+
+            salesOrderRequest.SalesOrder.TotalAmount = salesOrderRequest.SalesOrder.ItemLines.Sum(i => i.TotalAmount);
+            return salesOrderRequest;
+        }
+
+
+        private SalesOrderRequestModel LoadRequestModel()
+        {
+            var queryStream = Assembly.GetExecutingAssembly().GetManifestResourceStream("Goexw.Business.Content.Order.txt");
+            SalesOrderRequestModel requestModel = null;
+
+            using (var reader = new StreamReader(queryStream))
+            {
+                var xmlTemplate = reader.ReadToEnd();
+                requestModel = XmlUtility.Deserialize<SalesOrderRequestModel>(xmlTemplate);
+            }
+
+            return requestModel;
+        }
+
+        private string GetFSPId(string saleType)
+        {
+            return saleType == "Sample" ? "FSPHttpConnectorV1-2" : "FSPHttpConnectorV1-1";
+        }
+
+        private string GetISPId(string saleType)
+        {
+            return saleType == "Sample" ? "ISPHttpConnectorV1-2" : "ISPHttpConnectorV1-1";
+        }
+
+        private string GetSupplierId(string saleType)
+        {
+            return saleType == "Sample" ? "Midea" : "HaierAgent";
         }
     }
 }

@@ -47,11 +47,11 @@
           <ProductUnit>eOncEW</ProductUnit>
           <CurrencyCode>RMB</CurrencyCode>
           <MSRP>0</MSRP>
-          <OfferPrice>[[PRICE]]</OfferPrice>
+          <OfferPrice>0</OfferPrice>
           <Name>kzAfst</Name>
           <Description>TyaPxF</Description>
         </Item>
-        <Quantity>[[QTY]]</Quantity>
+        <Quantity>0</Quantity>
         <ShippingCharge>0</ShippingCharge>
         <TotalAmount>0</TotalAmount>
         <TotalDiscountAmount>0</TotalDiscountAmount>

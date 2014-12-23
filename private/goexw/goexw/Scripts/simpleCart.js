@@ -375,6 +375,7 @@ function Cart() {
                 switch (info[0]) {
                     case "Total":
                     case "total":
+                    case "CustomPrice":
                         outputValue = parseFloat(item['price']) * parseInt(item['quantity']);
                         break;
                     case "increment":
@@ -404,6 +405,17 @@ function Cart() {
                     outputValue = this.valueToCurrencyString(outputValue);
 
                 }
+
+                if (info[0] == 'CustomPrice')
+                {
+                    if (item.saletype == "WholeSale") {
+                        outputValue = this.valueToTextInput(outputValue, "onchange=\"simpleCart.items[\'" + item["id"] + "\'].set(\'" + info[0].toLowerCase() + "\' , this.value);\"");
+                    }
+                    else {
+                        outputValue = this.valueToCurrencyString(outputValue);
+                    }
+                }
+
                 if (info[1] == "image" ||
 						   info[0] == "Image") {
 
