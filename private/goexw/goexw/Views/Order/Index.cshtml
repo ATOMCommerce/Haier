@@ -48,7 +48,7 @@
                             <div class="itemheader">
                                 <div class="itemimg">@Html.ActionLink(order.AtomOrder.SalesOrderId, "Details", "Order", new { id = order.AtomOrder.SalesOrderId }, null)</div>
                                 <div class="item">@order.AtomOrder.TotalAmount</div>
-                                <div class="itemprice">Unit Price</div>
+                                <div class="itemprice">Price</div>
                                 <div class="itemqty">Quantity</div>
                                 <div class="operation">@order.AtomOrder.Status</div>
                                 <div style="clear:both; display:none;"></div>
@@ -80,7 +80,7 @@
                                             <img src="@line.Item.ISPId" />
                                         </div>
                                         <div class="item">@line.Item.Name</div>
-                                        <div class="itemprice">@line.Item.OfferPrice</div>
+                                        <div class="itemprice">@line.TotalAmount</div>
                                         <div class="itemqty">@line.Quantity</div>
                                         <div style="clear:both; display:none;"></div>
                                     </div>
@@ -91,16 +91,16 @@
                     }
                     else
                     {
-                        foreach (var line in order.SalesLines)
+                        foreach (var line in order.AtomOrder.ItemLines)
                         {
                             <tr>
                                 <td>
                                     <div class="itemline">
                                         <div class="itemimg">
-                                            <img src="@line.Item.Image" />
+                                            <img src="@line.Item.Name" />
                                         </div>
                                         <div class="item">@line.Item.Name</div>
-                                        <div class="itemprice">@line.Item.Price</div>
+                                        <div class="itemprice">@(line.Item.OfferPrice * line.Quantity)</div>
                                         <div class="itemqty">@line.Quantity</div>
                                         <div style="clear:both; display:none;"></div>
                                     </div>

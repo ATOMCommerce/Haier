@@ -375,8 +375,15 @@ function Cart() {
                 switch (info[0]) {
                     case "Total":
                     case "total":
-                    case "CustomPrice":
                         outputValue = parseFloat(item['price']) * parseInt(item['quantity']);
+                        break;
+                    case "CustomPrice":
+                        if (typeof item['customprice'] == 'undefined') {
+                            outputValue = parseFloat(item['price']) * parseInt(item['quantity']);
+                        }
+                        else {
+                            outputValue = item['customprice'];
+                        }
                         break;
                     case "increment":
                     case "Increment":
