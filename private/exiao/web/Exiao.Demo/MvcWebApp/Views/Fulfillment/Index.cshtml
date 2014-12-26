@@ -1,0 +1,100 @@
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<Exiao.Demo.DataAccess.FulfillmentOrderEntry>
+
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = CultureHelper.GetViewText("FulfillmentOrderManagement");
+}
+
+<h2>@CultureHelper.GetViewText("FulfillmentOrders")</h2>
+
+@using (Html.BeginForm("Index", "Fulfillment", FormMethod.Get))
+{
+    <p>
+        @CultureHelper.GetViewText("FindByOrderIdOrSku"): @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="@CultureHelper.GetViewText("Search")" />
+    </p>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink(CultureHelper.GetViewText("SupplierId"), "Index", new { sortOrder = ViewBag.SupplierSortParam, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink(CultureHelper.GetViewText("OrderId"), "Index", new { sortOrder = ViewBag.OrderIdSortParam, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink(CultureHelper.GetViewText("Status"), "Index", new { sortOrder = ViewBag.StatusSortParam, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @CultureHelper.GetViewText("ShippingTo")
+        </th>
+        <th>
+            @CultureHelper.GetViewText("Items")
+        </th>
+        <th>
+            @Html.ActionLink(CultureHelper.GetViewText("CreationDate"), "Index", new { sortOrder = ViewBag.CreationDateSortParam, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink(CultureHelper.GetViewText("ModifiedDate"), "Index", new { sortOrder = ViewBag.ModifiedDateSortParam, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @CultureHelper.GetViewText("Actions")
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SupplierId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BackendFulfillmentOrderId)
+                @Html.HiddenFor(modelItem => item.MflFulfillmentOrderId)
+            </td>
+            <td>
+                @CultureHelper.GetViewText(CultureHelper.AllFoStatus[item.Status])
+            </td>
+            <td>
+                @{
+        var shippingTo = Json.Decode<dynamic[]>(item.DeliveryAddressData)[0]["Fullname"];
+
+        @Convert.ToString(shippingTo)
+                }
+            </td>
+            <td>
+                <ul>
+                    @foreach (var itemLine in Json.Decode<dynamic[]>(item.ItemLinesData))
+                    {
+                        <li>@itemLine["ProductSKU"] : @itemLine["Quantity"]</li>
+                    }
+                </ul>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreationTime)
+                @Html.HiddenFor(modelItem => item.CreationTimeStamp)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastModifiedTime)
+                @Html.HiddenFor(modelItem => item.LastModifiedTimeStamp)
+            </td>
+            <td>
+                @if (!item.Status.Equals("Delivered"))
+                {
+                    @Html.ActionLink(CultureHelper.GetViewText("Edit"), "Edit", new { orderId = item.BackendFulfillmentOrderId })
+                    @Html.Raw(" |")
+                }
+                @Html.ActionLink(CultureHelper.GetViewText("Details"), "Details", new { orderId = item.BackendFulfillmentOrderId })
+            </td>
+        </tr>
+    }
+
+</table>
+<br />
+@(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

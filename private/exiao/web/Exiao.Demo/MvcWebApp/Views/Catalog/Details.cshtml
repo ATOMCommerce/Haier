@@ -1,0 +1,89 @@
+﻿@model Exiao.Demo.DataAccess.CatalogItemEntry
+
+@{
+    ViewBag.Title = string.Format("{0}: {1} - {2} - {3}", CultureHelper.GetViewText("CatalogItemDetail"), Model.SupplierId, Model.Sku, Model.Name);
+}
+
+<h2>@CultureHelper.GetViewText("Details")</h2>
+
+<fieldset>
+    <legend>@CultureHelper.GetViewText("CatalogItem")</legend>
+    <div class="display-label">
+        @Html.LabelFor(model => model.SupplierId, labelText: CultureHelper.GetViewText("SupplierId"))
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SupplierId)
+    </div>
+    <div class="display-label">
+        @Html.LabelFor(model => model.Sku, labelText: CultureHelper.GetViewText("Sku"))
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Sku)
+    </div>
+    <div class="display-label">
+        @Html.LabelFor(model => model.Variant, labelText: CultureHelper.GetViewText("ProductVariant"))
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Variant)
+    </div>
+    <div class="display-label">
+        @Html.LabelFor(model => model.Name, labelText: CultureHelper.GetViewText("Name"))
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+    <div class="display-label">
+        @Html.LabelFor(model => model.ProductType, labelText: CultureHelper.GetViewText("ProductType"))
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ProductType)
+    </div>
+    <div class="display-label">
+        @Html.LabelFor(model => model.Description, labelText: CultureHelper.GetViewText("Description"))
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Description)
+    </div>
+    <div class="display-label">
+        @Html.LabelFor(model => model.Unit, labelText: CultureHelper.GetViewText("Unit"))
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Unit)
+    </div>
+    <div class="display-label">
+        @Html.LabelFor(model => model.UnitPrice, labelText: CultureHelper.GetViewText("UnitPrice"))
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UnitPrice)
+    </div>
+    <div class="display-label">
+        @Html.LabelFor(model => model.DataVersion, labelText: CultureHelper.GetViewText("DataVersion"))
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DataVersion)
+    </div>
+    <div class="display-label">
+        @Html.LabelFor(model => model.CreationTime, labelText: CultureHelper.GetViewText("CreationDate"))
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CreationTime)
+    </div>
+    <div class="display-label">
+        @Html.LabelFor(model => model.UpdateTime, labelText: CultureHelper.GetViewText("ModifiedDate"))
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UpdateTime)
+    </div>
+</fieldset>
+
+<p>
+    @if (!ViewBag.HasInventory)
+    {
+        @Html.ActionLink(CultureHelper.GetViewText("CreateInventory"), "Create", "Inventory", routeValues: new { supplierId = Model.SupplierId, productSku = Model.Sku }, htmlAttributes: null)
+        @Html.Raw(" |")
+    }
+    @Html.ActionLink(CultureHelper.GetViewText("EditInventory"), "Edit", "Inventory", routeValues: new { supplierId = Model.SupplierId, productSku = Model.Sku }, htmlAttributes: null) |
+    @Html.ActionLink(CultureHelper.GetViewText("Edit"), "Edit", new { supplierId = Model.SupplierId, sku = Model.Sku, variant = Model.Variant }) |
+    @Html.ActionLink(CultureHelper.GetViewText("Delete"), "Delete", new { supplierId = Model.SupplierId, sku = Model.Sku, variant = Model.Variant }) |
+    @Html.ActionLink(CultureHelper.GetViewText("BackToList"), "Index")
+</p>

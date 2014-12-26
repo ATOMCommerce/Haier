@@ -1,0 +1,48 @@
+﻿@using Microsoft.Azure.ActiveDirectory.GraphClient
+@model IList<AppRole>
+
+@{
+    ViewBag.Title = "Role Management";
+}
+
+@if (User.Identity.IsAuthenticated)
+{
+    <h2>All Roles</h2>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table table-bordered table-striped">
+        <tr>
+            <th>
+                DisplayName
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                IsEnabled
+            </th>
+            <th>
+                Actions
+            </th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DisplayName)
+                    @Html.HiddenFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsEnabled)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { objectId = item.Id })
+                </td>
+            </tr>
+        }
+    </table>
+}

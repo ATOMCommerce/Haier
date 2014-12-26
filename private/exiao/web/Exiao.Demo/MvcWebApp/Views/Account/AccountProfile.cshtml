@@ -1,0 +1,24 @@
+﻿@using Exiao.Demo.DataAccess
+@using Microsoft.Azure.ActiveDirectory.GraphClient
+@{
+    ViewBag.Title = "Account profile";
+}
+
+@if (User.Identity.IsAuthenticated)
+{
+    <h4>Member of groups</h4>
+    <ul>
+        @foreach (Group item in ViewBag.Groups)
+        {
+            <li>@item.DisplayName</li>
+        }
+    </ul>
+
+    <h4>Suppliers</h4>
+    <ul>
+        @foreach (SupplierProfileEntry item in ViewBag.Suppliers)
+        {
+            <li>@item.SupplierName</li>
+        }
+    </ul>
+}

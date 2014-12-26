@@ -1,0 +1,11 @@
+﻿@{
+    ViewBag.Title = "Error";
+    Layout = "~/Views/Shared/_Error.cshtml";
+}
+
+<pre style="color:red">@ViewBag.ErrorMessage</pre>
+
+@if (ViewBag.SignIn)
+{
+    <h4>Click @Html.ActionLink("here", "SignIn", "Account", null, null) to re-authenticate.</h4>
+}

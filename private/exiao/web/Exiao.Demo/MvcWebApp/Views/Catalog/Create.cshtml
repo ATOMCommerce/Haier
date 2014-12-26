@@ -1,0 +1,95 @@
+﻿@model Exiao.Demo.DataAccess.CatalogItemEntry
+
+@{
+    ViewBag.Title = CultureHelper.GetViewText("CreateCatalogItem");
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>@CultureHelper.GetViewText("CatalogItem")</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SupplierId, htmlAttributes: new { @class = "control-label col-md-2" }, labelText: CultureHelper.GetViewText("SupplierId"))
+            <div class="col-md-10">
+
+                @Html.DropDownListFor(
+               model => model.SupplierId,
+               ((IEnumerable<string>)ViewBag.Suppliers).Select(s => new SelectListItem { Text = s, Value = s }),
+               new { @class = "form-control" })
+
+                @Html.ValidationMessageFor(model => model.SupplierId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Sku, htmlAttributes: new { @class = "control-label col-md-2" }, labelText: CultureHelper.GetViewText("Sku"))
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Sku, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Sku, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Variant, htmlAttributes: new { @class = "control-label col-md-2" }, labelText: CultureHelper.GetViewText("ProductVariant"))
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Variant, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Variant, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" }, labelText: CultureHelper.GetViewText("ProductName"))
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProductType, htmlAttributes: new { @class = "control-label col-md-2" }, labelText: CultureHelper.GetViewText("ProductType"))
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ProductType, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ProductType, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" }, labelText: CultureHelper.GetViewText("Description"))
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Unit, htmlAttributes: new { @class = "control-label col-md-2" }, labelText: CultureHelper.GetViewText("Unit"))
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Unit, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Unit, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UnitPrice, htmlAttributes: new { @class = "control-label col-md-2" }, labelText: CultureHelper.GetViewText("UnitPrice"))
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.UnitPrice, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.UnitPrice, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="@CultureHelper.GetViewText("Create")" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink(CultureHelper.GetViewText("BackToList"), "Index")
+</div>

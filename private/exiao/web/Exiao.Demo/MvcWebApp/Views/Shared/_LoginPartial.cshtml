@@ -1,0 +1,19 @@
+﻿@if (Request.IsAuthenticated)
+{
+    <text>
+        <ul class="nav navbar-nav navbar-right">
+            <li class="navbar-text">
+                @CultureHelper.GetViewText("Hello"), @Html.ActionLink(GraphHelper.GetCurrentDisplayName(), "AccountProfile", "Account", htmlAttributes: new Dictionary<string, object> { { "id", "accountLink" } }, routeValues: null)!
+            </li>
+            <li>
+                @Html.ActionLink(CultureHelper.GetViewText("SignOut"), "SignOut", "Account")
+            </li>
+        </ul>
+    </text>
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink(CultureHelper.GetViewText("SignIn"), "SignIn", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    </ul>
+}

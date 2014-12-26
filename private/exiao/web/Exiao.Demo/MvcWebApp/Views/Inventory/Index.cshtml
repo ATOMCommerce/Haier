@@ -1,0 +1,80 @@
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<Exiao.Demo.DataAccess.InventoryEntry>
+
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = CultureHelper.GetViewText("InventoryManagement");
+}
+
+<h2>@CultureHelper.GetViewText("Inventories")</h2>
+
+@using (Html.BeginForm("Index", "Inventory", FormMethod.Get))
+{
+    <p>
+        @CultureHelper.GetViewText("FindBySku"): @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="@CultureHelper.GetViewText("Search")" />
+    </p>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink(CultureHelper.GetViewText("SupplierId"), "Index", new { sortOrder = ViewBag.SupplierSortParam, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink(CultureHelper.GetViewText("Sku"), "Index", new { sortOrder = ViewBag.SkuSortParam, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @CultureHelper.GetViewText("IsUnlimited")
+        </th>
+        <th>
+            @CultureHelper.GetViewText("AvailableQuantity")
+        </th>
+        <th>
+            @Html.ActionLink(CultureHelper.GetViewText("CreationDate"), "Index", new { sortOrder = ViewBag.CreationDateSortParam, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink(CultureHelper.GetViewText("ModifiedDate"), "Index", new { sortOrder = ViewBag.ModifiedDateSortParam, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @CultureHelper.GetViewText("Actions")
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SupplierId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductSku)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsUnlimited)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AvailableQuantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreationTime)
+                @Html.HiddenFor(modelItem => item.CreationTimeStamp)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastModifiedTime)
+                @Html.HiddenFor(modelItem => item.LastModifiedTimeStamp)
+            </td>
+            <td>
+                @Html.ActionLink(CultureHelper.GetViewText("Edit"), "Edit", new { supplierId = item.SupplierId, productSku = item.ProductSku }) |
+                @Html.ActionLink(CultureHelper.GetViewText("Details"), "Details", new { supplierId = item.SupplierId, productSku = item.ProductSku })
+            </td>
+        </tr>
+    }
+
+</table>
+<br />
+@(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

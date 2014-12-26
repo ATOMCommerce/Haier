@@ -1,0 +1,85 @@
+﻿@model Exiao.Demo.DataAccess.InventoryEntry
+
+@{
+    ViewBag.Title = string.Format("{0}: {1} - {2}", CultureHelper.GetViewText("InventoryDetails"), Model.SupplierId, Model.ProductSku);
+}
+
+<h2>@CultureHelper.GetViewText("Details")</h2>
+
+<div>
+    <h4>@CultureHelper.GetViewText("Inventory")</h4>
+    @Html.HiddenFor(model => model.Id)
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.LabelFor(model => model.SupplierId, labelText: CultureHelper.GetViewText("SupplierId"))
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SupplierId)
+        </dd>
+
+        <dt>
+            @Html.LabelFor(model => model.ProductSku, labelText: CultureHelper.GetViewText("Sku"))
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductSku)
+        </dd>
+
+        <dt>
+            @Html.LabelFor(model => model.VariantId, labelText: CultureHelper.GetViewText("ProductVariant"))
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VariantId)
+        </dd>
+
+        <dt>
+            @Html.LabelFor(model => model.AvailableQuantity, labelText: CultureHelper.GetViewText("AvailableQuantity"))
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AvailableQuantity)
+        </dd>
+
+        <dt>
+            @Html.LabelFor(model => model.IsUnlimited, labelText: CultureHelper.GetViewText("IsUnlimited"))
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsUnlimited)
+        </dd>
+
+        <dt>
+            @Html.LabelFor(model => model.ExtraData, labelText: CultureHelper.GetViewText("ExtraData"))
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ExtraData)
+        </dd>
+
+        <dt>
+            @Html.LabelFor(model => model.CreationTime, labelText: CultureHelper.GetViewText("CreationDate"))
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreationTime)
+            @Html.HiddenFor(model => model.CreationTimeStamp)
+        </dd>
+
+        <dt>
+            @Html.LabelFor(model => model.LastModifiedTime, labelText: CultureHelper.GetViewText("ModifiedDate"))
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastModifiedTime)
+            @Html.HiddenFor(model => model.LastModifiedTimeStamp)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink(CultureHelper.GetViewText("Edit"), "Edit", new { id = Model.ProductSku }) |
+    @Html.ActionLink(CultureHelper.GetViewText("BackToList"), "Index")
+</p>

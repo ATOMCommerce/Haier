@@ -1,0 +1,93 @@
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<Exiao.Demo.DataAccess.CatalogItemEntry>
+
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = CultureHelper.GetViewText("CatalogManagement");
+}
+
+<h2>@CultureHelper.GetViewText("CatalogItems")</h2>
+
+<p>
+    @Html.ActionLink(CultureHelper.GetViewText("CreateNew"), "Create")
+</p>
+@using (Html.BeginForm("Index", "Catalog", FormMethod.Get))
+{
+    <p>
+        @CultureHelper.GetViewText("FindByNameOrSku"): @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="@CultureHelper.GetViewText("Search")" />
+    </p>
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink(CultureHelper.GetViewText("SupplierId"), "Index", new { sortOrder = ViewBag.SupplierSortParam, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink(CultureHelper.GetViewText("Sku"), "Index", new { sortOrder = ViewBag.SkuSortParam, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink(CultureHelper.GetViewText("ProductName"), "Index", new { sortOrder = ViewBag.NameSortParam, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @CultureHelper.GetViewText("ProductVariant")
+        </th>
+        <th>
+            @CultureHelper.GetViewText("ProductType")
+        </th>
+        <th>
+            @CultureHelper.GetViewText("UnitPrice")
+        </th>
+        <th>
+            @Html.ActionLink(CultureHelper.GetViewText("CreationDate"), "Index", new { sortOrder = ViewBag.CreationDateSortParam, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink(CultureHelper.GetViewText("ModifiedDate"), "Index", new { sortOrder = ViewBag.ModifiedDateSortParam, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @CultureHelper.GetViewText("Actions")
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SupplierId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sku)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Variant)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UnitPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreationTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdateTime)
+            </td>
+            <td>
+                @Html.ActionLink(CultureHelper.GetViewText("Edit"), "Edit", new { supplierId = item.SupplierId, sku = item.Sku, variant = item.Variant }) |
+                @Html.ActionLink(CultureHelper.GetViewText("Details"), "Details", new { supplierId = item.SupplierId, sku = item.Sku, variant = item.Variant }) |
+                @Html.ActionLink(CultureHelper.GetViewText("Delete"), "Delete", new { supplierId = item.SupplierId, sku = item.Sku, variant = item.Variant })
+            </td>
+        </tr>
+    }
+
+</table>
+<br />
+@(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

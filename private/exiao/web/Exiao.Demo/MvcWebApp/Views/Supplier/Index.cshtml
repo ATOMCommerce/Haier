@@ -1,0 +1,66 @@
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<Exiao.Demo.DataAccess.SupplierProfileEntry>
+
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = CultureHelper.GetViewText("SupplierManagement");
+}
+
+<h2>@CultureHelper.GetViewText("AllSuppliers")</h2>
+
+<p>
+    @Html.ActionLink(CultureHelper.GetViewText("CreateNew"), "Create")
+</p>
+@using (Html.BeginForm("Index", "Supplier", FormMethod.Get))
+{
+    <p>
+        @CultureHelper.GetViewText("FindByNameOrId"): @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="@CultureHelper.GetViewText("Search")" />
+    </p>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink(CultureHelper.GetViewText("SupplierId"), "Index", new { sortOrder = ViewBag.SupplierSortParam, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink(CultureHelper.GetViewText("SupplierName"), "Index", new { sortOrder = ViewBag.NameSortParam, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @CultureHelper.GetViewText("Description")
+        </th>
+        <th>
+            @CultureHelper.GetViewText("Actions")
+        </th>
+    </tr>
+
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SupplierId)
+                @Html.HiddenFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SupplierName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.ActionLink(CultureHelper.GetViewText("Edit"), "Edit", new { supplierId = item.SupplierId }) |
+                @Html.ActionLink(CultureHelper.GetViewText("Details"), "Details", new { supplierId = item.SupplierId }) |
+                @Html.ActionLink(CultureHelper.GetViewText("Delete"), "Delete", new { supplierId = item.SupplierId })
+            </td>
+        </tr>
+    }
+
+</table>
+<br />
+@(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

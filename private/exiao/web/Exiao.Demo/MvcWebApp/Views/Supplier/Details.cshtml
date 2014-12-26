@@ -1,0 +1,101 @@
+﻿@using Exiao.Demo.DataAccess
+@using Microsoft.Azure.ActiveDirectory.GraphClient
+@model SupplierProfileEntry
+
+@{
+    ViewBag.Title = CultureHelper.GetViewText("SupplierDetail") + ": " + Model.SupplierId;
+}
+
+<fieldset>
+    <legend>@CultureHelper.GetViewText("Supplier")</legend>
+    <div class="display-label">
+        @Html.LabelFor(model => model.SupplierId, labelText: CultureHelper.GetViewText("SupplierId"))
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SupplierId)
+        @Html.HiddenFor(model => model.Id)
+    </div>
+    <div class="display-label">
+        @Html.LabelFor(model => model.SupplierName, labelText: CultureHelper.GetViewText("SupplierName"))
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SupplierName)
+    </div>
+    <div class="display-label">
+        @Html.LabelFor(model => model.Description, labelText: CultureHelper.GetViewText("Description"))
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Description)
+    </div>
+    <div class="display-label">
+        @Html.LabelFor(model => model.Profile, labelText: CultureHelper.GetViewText("Profile"))
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Profile)
+    </div>
+</fieldset>
+
+<h3>@CultureHelper.GetViewText("MappingGroups")</h3>
+
+@if (ViewBag.Groups != null)
+{
+    using (Html.BeginForm("AssignGroup", "Supplier", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        var groups = (IEnumerable<IGroup>)ViewBag.Groups;
+
+        @Html.Hidden("groupText", groups.First().DisplayName)
+
+        @Html.DropDownList(
+        "group",
+        groups.Select(g => new SelectListItem { Text = g.DisplayName, Value = g.ObjectId }),
+             new { onchange = "$('#groupText').val($('#group option:selected').text())" })
+
+        @Html.Hidden("SupplierId", Model.SupplierId)
+        @Html.Hidden("SupplierName", Model.SupplierName)
+
+        <input type="submit" value="@CultureHelper.GetViewText("AssignGroup")" />
+    }
+}
+
+@if (ViewBag.MappingGroups != null)
+{
+    var mappingGroups = (IEnumerable<SupplierMappingEntry>)ViewBag.MappingGroups;
+
+    if (mappingGroups.Any())
+    {
+        using (Html.BeginForm("RemoveGroup", "Supplier", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            <table class="table table-bordered table-striped">
+                <tr>
+                    <th>@CultureHelper.GetViewText("GroupName")</th>
+                    <th>@CultureHelper.GetViewText("GroupId")</th>
+                    <th>@CultureHelper.GetViewText("Delete")</th>
+                </tr>
+
+                @foreach (var group in mappingGroups)
+                {
+                    <tr>
+                        <td>@group.GroupName</td>
+                        <td>@group.GroupId</td>
+                        <td>
+                            <input type="checkbox" name="@group.Id" value="delete" />
+                        </td>
+                    </tr>
+                }
+            </table>
+
+            @Html.Hidden("SupplierId", Model.SupplierId)
+            <input type="submit" value="@CultureHelper.GetViewText("RemoveMappings")" />
+        }
+    }
+}
+
+<div>
+    @Html.ActionLink(CultureHelper.GetViewText("Edit"), "Edit", new { supplierId = Model.SupplierId }) |
+    @Html.ActionLink(CultureHelper.GetViewText("Delete"), "Delete", new { supplierId = Model.SupplierId }) |
+    @Html.ActionLink(CultureHelper.GetViewText("BackToList"), "Index")
+</div>

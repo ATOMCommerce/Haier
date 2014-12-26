@@ -1,0 +1,50 @@
+﻿@model Microsoft.Azure.ActiveDirectory.GraphClient.AppRole
+
+@{
+    ViewBag.Title = "Role Detail: " + Model.DisplayName;
+}
+
+<fieldset>
+    <legend>Role</legend>
+    <div class="display-label">
+        @Html.LabelFor(model => model.Id)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Id)
+    </div>
+    <div class="display-label">
+        @Html.LabelFor(model => model.DisplayName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DisplayName)
+    </div>
+    <div class="display-label">
+        @Html.LabelFor(model => model.Description)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Description)
+    </div>
+    <div class="display-label">
+        @Html.LabelFor(model => model.IsEnabled)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IsEnabled)
+    </div>
+    <div class="display-label">
+        @Html.LabelFor(model => model.AllowedMemberTypes)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AllowedMemberTypes)
+    </div>
+    <div class="display-label">
+        @Html.LabelFor(model => model.Value)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Value)
+    </div>
+</fieldset>
+
+<div>
+    @Html.ActionLink("Delete", "Delete", new { objectId = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</div>
